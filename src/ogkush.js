@@ -12593,40 +12593,54 @@ class OGInfinity {
       )
     );
 
-    let fullSumresMSU = createDOM("div", { class: "ogl-res ogl-sum-symbol" });
+    let fullSumresMsu = createDOM("div", { class: "ogl-res ogl-sum-symbol" });
 
     let tradeRate = this.json.options.tradeRate;
-    let fullSumMSE = 0;
+    let fullSumMsu = 0;
     let fullSum = [
       (mSumP + mSumM + this.json.flying.metal),
       (cSumP + cSumM + this.json.flying.crystal),
       (dSumP + dSumM + this.json.flying.deuterium),
     ];
-    fullSumMSE += fullSum.map((x, n) => (x * tradeRate[0]) / tradeRate[n]).reduce((sum, cur) => sum + cur, 0);
+    fullSumMsu += fullSum.map((x, n) => (x * tradeRate[0]) / tradeRate[n]).reduce((sum, cur) => sum + cur, 0);
 
-    fullSumresMSU.appendChild(
+    fullSumresMsu.appendChild(
       createDOM(
         "span",
         {
           class: "tooltip ",
-          "data-title": toFormatedNumber(Math.floor(fullSumMSE)),
+          "data-title": toFormatedNumber(Math.floor(fullSumMsu)),
         },
-        toFormatedNumber(Math.floor(fullSumMSE), null, true)
+        toFormatedNumber(Math.floor(fullSumMsu), null, true)
       )
     );
 
     let sum = createDOM("div", { class: "smallplanet smaller ogl-summary" });
     sum.appendChild(createDOM("div", { class: "ogl-sum-symbol" }, "ΣΣ"));
     sum.appendChild(sumres);
+
+    
+    let sumMsuSideDiv = sum.appendChild(createDOM("div", { class: "ogl-sum-symbol" }, "MSU"));
+    sum.appendChild(fullSumresMsu);
+
     list.appendChild(sum);
+
     let sumMSU = createDOM("div", { class: "smallplanet smaller ogl-summary" });
     sumMSU.appendChild(createDOM("div", { class: "ogl-sum-symbol" }, "ΣΣ MSU"));
-    sumMSU.appendChild(fullSumresMSU);
+    sumMSU.appendChild(fullSumresMsu.cloneNode(true));
     list.appendChild(sumMSU);
 
     if (document.querySelectorAll(".moonlink").length == 0) {
       divMoonSum.style.display = "none";
       moonSumSymbol.style.display = "none";
+      sumMSU.style.display = "";
+      sumMsuSideDiv.style.display = "none";
+      fullSumresMsu.style.display = "none";
+    }
+    else {
+      sumMSU.style.display = "none";
+      sumMsuSideDiv.style.display = "";
+      fullSumresMsu.style.display = "";
     }
   }
 
