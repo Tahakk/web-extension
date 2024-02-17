@@ -17268,14 +17268,14 @@ class OGInfinity {
         /*172*/ {
           de: "MSE",
           en: "MSU",
-          es: "MSU",
+          es: "UME",
           fr: "USM",
           tr: "MSB",
         },
         /*173*/ {
           de: "Summe als Standardmetalleinheit",
           en: "Sum as Metal standard unit",
-          es: "Suma como unidad estándar de metal",
+          es: "Suma en unidades de metal equivalente",
           fr: "Somme en unité standard de métal",
           tr: "Metal standart birimi olarak toplam",
         },
