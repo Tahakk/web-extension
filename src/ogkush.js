@@ -1,4 +1,5 @@
 /// Page Context Imports
+import { initConfOptions, getOptions } from "./ctxpage/conf-options.js";
 import ctxMessageAnalyzer from "./ctxpage/messages-analyzer/index.js";
 import * as DOM from "./util/dom.js";
 import { getLogger } from "./util/logger.js";
@@ -397,7 +398,7 @@ const BUIDLING_INFO = {
   11112: {
     name: "Planetary Shield",
     baseCost: [250000, 125000, 125000],
-    factorCost: 1.2,
+    factorCost: 1.15,
     baseTime: 95000,
     factorTime: 1.2,
     baseCons: 100,
@@ -630,14 +631,14 @@ const BUIDLING_INFO = {
   14102: {
     name: "Antimatter Condenser",
     baseCost: [6, 3, 0, 9],
-    factorCost: 1.21,
+    factorCost: 1.20,
     factorEnergy: 1.02,
     baseTime: 40,
     factorTime: 1.22,
   },
   14103: {
     name: "Vortex Chamber",
-    baseCost: [20000, 20000, 30000],
+    baseCost: [20000, 15000, 15000],
     factorCost: 1.3,
     baseTime: 16000,
     factorTime: 1.25,
@@ -675,7 +676,7 @@ const BUIDLING_INFO = {
   },
   14107: {
     name: "Cloning Laboratory",
-    baseCost: [15000, 15000, 20000],
+    baseCost: [15000, 15000, 5000],
     factorCost: 1.2,
     baseTime: 12000,
     factorTime: 1.2,
@@ -701,7 +702,7 @@ const BUIDLING_INFO = {
   14110: {
     name: "Psionic Modulator",
     baseCost: [150000, 30000, 30000],
-    factorCost: 1.5,
+    factorCost: 1.4,
     baseTime: 52000,
     factorTime: 1.8,
     baseCons: 140,
@@ -841,7 +842,7 @@ const RESEARCH_INFO = {
   11205: {
     name: "Orbital Den",
     baseCost: [25000, 20000, 10000],
-    factorCost: 1.4,
+    factorCost: 1.3,
     baseTime: 4500,
     factorTime: 1.2,
   },
@@ -932,7 +933,7 @@ const RESEARCH_INFO = {
   11218: {
     name: "Supercomputer",
     baseCost: [500000, 300000, 200000],
-    factorCost: 1.3,
+    factorCost: 1.2,
     baseTime: 13000,
     factorTime: 1.3,
   },
@@ -1455,64 +1456,14 @@ class OGInfinity {
     this.json.tchat = this.json.tchat || false;
     this.json.needSync = this.json.needSync || false;
     this.json.timezoneDiff = this.json.timezoneDiff || 0;
-    this.json.options = this.json.options || {};
-    this.json.options.collect = this.json.options.collect || {
-      target: { galaxy: 0, system: 0, position: 0, type: 1 },
-      mission: 3, // 3 = transport, 4 = deployment
-      ship: 202, // 202 = small cargo, 203 = large cargo
-    };
-    this.json.options.maxCrawler = this.json.options.limitCrawler || false;
-    this.json.options.crawlerPercent = this.json.options.crawlerPercent || 1.5;
-    this.json.options.tradeRate = this.json.options.tradeRate || [2.5, 1.5, 1, 0];
-    this.json.options.dispatcher = this.json.options.dispatcher === true ? true : false;
-    this.json.options.sideStalkVisible = this.json.options.sideStalkVisible === false ? false : true;
-    this.json.options.eventBoxExps = this.json.options.eventBoxExps === false ? false : true;
-    this.json.options.eventBoxKeep = this.json.options.eventBoxKeep === true ? true : false;
-    this.json.options.empire = this.json.options.empire === true ? true : false;
-    this.json.options.targetList = this.json.options.targetList === true ? true : false;
-    this.json.options.fret = this.json.options.fret || 202;
-    this.json.options.spyFret = this.json.options.spyFret || 202;
-    this.json.options.expeditionMission = this.json.options.expeditionMission || 15;
-    this.json.options.foreignMission = this.json.options.foreignMission || 3;
-    this.json.options.harvestMission = this.json.options.harvestMission || 4;
-    this.json.options.expedition = this.json.options.expedition || {};
-    this.json.options.expedition.cargoShip = this.json.options.expedition.cargoShip || 202; // small cargo
-    this.json.options.expedition.combatShip = this.json.options.expedition.combatShip || 218; // reaper
-    this.json.options.expedition.defaultTime = this.json.options.expedition.defaultTime || 1; // 1 hour
-    this.json.options.expedition.limitCargo = this.json.options.expedition.limitCargo || 1; // 100 %
-    this.json.options.expedition.rotation = this.json.options.expedition.rotation === true ? true : false;
-    this.json.options.expedition.rotationAfter = this.json.options.expedition.rotationAfter || 3;
-    this.json.options.expedition.sendCombat = this.json.options.expedition.sendCombat === false ? false : true;
-    this.json.options.expedition.sendProbe = this.json.options.expedition.sendProbe === false ? false : true;
-    this.json.options.expedition.standardFleet = this.json.options.expedition.standardFleet === true ? true : false;
-    this.json.options.expedition.standardFleetId = this.json.options.expedition.standardFleetId || 0;
-    this.json.options.activitytimers = this.json.options.activitytimers === true ? true : false;
-    this.json.options.planetIcons = this.json.options.planetIcons === true ? true : false;
-    this.json.options.disableautofetchempire = this.json.options.disableautofetchempire === true ? true : false;
-    this.json.options.autofetchempire = this.json.options.disableautofetchempire === true ? false : true;
-    this.json.options.spyFilter = this.json.options.spyFilter || "DATE";
-    if (
-      this.json.options.ptreTK &&
-      this.json.options.ptreTK.replace(/-/g, "").length == 18 &&
-      this.json.options.ptreTK.indexOf("TM") == 0
-    ) {
-      this.json.options.ptreTK = this.json.options.ptreTK || "";
-    } else {
-      this.json.options.ptreTK = "";
-      // TODO: Remove ptreTK from LocalStorage (it has wrong format)
-    }
-    this.json.options.pantryKey = this.json.options.pantryKey || "";
-    this.json.options.rvalLimit = this.json.options.rvalLimit || 4e5 * this.json.speed;
-    this.json.options.spyTableEnable = this.json.options.spyTableEnable === false ? false : true;
-    this.json.options.spyTableAppend = this.json.options.spyTableAppend === false ? false : true;
-    this.json.options.compactViewEnable = this.json.options.compactViewEnable === false ? false : true;
-    this.json.options.autoDeleteEnable = this.json.options.autoDeleteEnable === true ? true : false;
-    this.json.options.kept = this.json.options.kept || {};
-    this.json.options.defaultKept = this.json.options.defaultKept || {};
-    this.json.options.hiddenTargets = this.json.options.hiddenTargets || {};
-    this.json.options.timeZone = this.json.options.timeZone === false ? false : true;
+
+    initConfOptions(this.json.options);
+    // set a proxy for compatibility, important for saving configuration.
+    this.json.options = getOptions();
+
     this.json.selectedLifeforms = this.json.selectedLifeforms || {};
     this.json.lifeformBonus = this.json.lifeformBonus || null;
+    this.json.lifeformPlanetBonus = this.json.lifeformPlanetBonus || {};
     this.gameLang = document.querySelector('meta[name="ogame-language"]').getAttribute("content");
     this.isLoading = false;
     this.autoQueue = new AutoQueue();
@@ -1636,7 +1587,7 @@ class OGInfinity {
             this.updateServerSettings(true);
             this.getAllianceClass();
             this.initializeLFTypeName();
-            await this.updateLifeform(true);
+            await this.updateLifeform();
             this.welcome();
           });
       } else {
@@ -1668,15 +1619,15 @@ class OGInfinity {
       );
   }
 
-  updateEmpireData(force = false) {
+  async updateEmpireData(force = false) {
     let timeSinceLastUpdate = new Date() - new Date(this.json.lastEmpireUpdate);
     if (
       force ||
       isNaN(new Date(this.json.lastEmpireUpdate)) ||
       (timeSinceLastUpdate > 5 * 60 * 1e3 && this.json.needsUpdate) ||
-      (timeSinceLastUpdate > 1 * 60 * 1e3 && this.json.options.autofetchempire)
+      (timeSinceLastUpdate > 1 * 60 * 1e3 && !this.json.options.lessAggressiveEmpireAutomaticUpdate)
     ) {
-      this.updateInfo();
+      await this.updateInfo();
     }
     let stageForUpdate = () => {
       this.json.needsUpdate = true;
@@ -2588,21 +2539,13 @@ class OGInfinity {
               baseTechno = that.building(technologyId, baseLvl, object);
             }
             if (
-              baseTechno.cost[0] > metalCost + 1 ||
-              baseTechno.cost[0] < metalCost - 1 ||
-              baseTechno.cost[1] > crystalCost + 1 ||
-              baseTechno.cost[1] < crystalCost - 1 ||
-              baseTechno.cost[2] > deuteriumCost + 1 ||
-              baseTechno.cost[2] < deuteriumCost - 1
+              Math.abs((baseTechno.cost[0] - metalCost) / metalCost) > 0.0001 ||
+              Math.abs((baseTechno.cost[1] - crystalCost) / crystalCost) > 0.0001 ||
+              Math.abs((baseTechno.cost[2] - deuteriumCost) / deuteriumCost) > 0.0001
             )
               document
                 .querySelector(".costs")
-                .appendChild(
-                  createDOM("div", { class: "overmark" }, "OGi Warning: Lifeform bonus acquisition currently broken.")
-                );
-            /* since ogame 11.5.0 disabled, as it seems lifeform buildings&techs bonuses are not reported except a few
                 .appendChild(createDOM("div", { class: "overmark" }, "resources not correct, try to update LF bonus"));
-                */
 
             updateResearchDetails(technologyId, baseLvl, tolvl);
             let previous = infoDiv.appendChild(createDOM("a", { class: "icon icon_skip_back" }));
@@ -2853,11 +2796,13 @@ class OGInfinity {
       this.delayDiv2.textContent = timeToJoin;
       this.delayDiv3.textContent = timeToJoin;
       if (end > 0) {
-        this.delayDiv2.setAttribute("style", 'color:"green !important"');
-        this.delayDiv2.setAttribute("style", 'color:"green !important"');
+        this.delayDiv2.setAttribute("style", "color:green !important");
+        this.delayDiv3.setAttribute("style", "color:green !important");
+        this.delayTimeDiv3.setAttribute("style", "position: absolute;left: 65px;color:none");
       } else {
-        this.delayDiv2.classList.remove("ogk-delay-ontime");
-        this.delayDiv2.classList.remove("ogk-delay-ontime");
+        this.delayDiv2.setAttribute("style", "color:none");
+        this.delayDiv3.setAttribute("style", "color:none");
+        this.delayTimeDiv3.setAttribute("style", "position: absolute;left: 65px;color:#d43635 !important");
       }
       const format = "+" + getFormatedTime(flighDiff >= 0 ? flighDiff : 0);
       this.delayTimeDiv.textContent = format;
@@ -3296,7 +3241,7 @@ class OGInfinity {
     );
     bar.appendChild(
       createDOM("li").appendChild(
-        createDOM("a", { href: `https://trashsim.oplanet.eu/${this.univerviewLang}`, target: "_blank" }, "Trash")
+        createDOM("a", { href: `${this.json.options.simulator}${this.univerviewLang}`, target: "_blank" }, "Sim")
       ).parentElement
     );
     bar.appendChild(
@@ -3393,7 +3338,7 @@ class OGInfinity {
                     if (movement.metal) object.metal += movement.metal;
                     if (movement.crystal) object.crystal += movement.crystal;
                     if (movement.deuterium) object.deuterium += movement.deuterium;
-                    if (this.json.options.autofetchempire) {
+                    if (!this.json.options.lessAggressiveEmpireAutomaticUpdate) {
                       update = true;
                     } else {
                       object.invalidate = true;
@@ -3891,11 +3836,10 @@ class OGInfinity {
         }
 
         // PTRE activities
-        if (
-          this.json.options.ptreTK &&
-          playerId > -1 &&
-          (this.json.sideStalk.indexOf(playerId) > -1 || this.markedPlayers.indexOf(playerId) > -1)
-        ) {
+        if ( this.json.options.ptreTK && playerId > -1 &&
+            (this.json.sideStalk.indexOf(playerId) > -1 ||
+             this.markedPlayers.indexOf(playerId) > -1 ||
+             (this.json.searchHistory.length > 0 && playerId == this.json.searchHistory[this.json.searchHistory.length - 1].id)) ) {
           let planetActivity = row.querySelector("[data-planet-id] .activity.minute15")
             ? "*"
             : row.querySelector("[data-planet-id] .activity")?.textContent.trim() || 60;
@@ -3950,7 +3894,7 @@ class OGInfinity {
     pageContextRequest("ptre", "galaxy", data.changes, data.ptreKey, data.serverTime)
       .then((value) => {
         if (Object.keys(value.response).length > 0) {
-          ptreService.updateGalaxy(value.response);
+          ptreService.updateGalaxy(this.gameLang, this.universe, value.response);
         }
       })
       .finally(() => "nothing");
@@ -3964,30 +3908,30 @@ class OGInfinity {
   async ptreActivityUpdate(ptreJSON, systemCoords) {
     for (const coords of Object.keys(ptreJSON)) {
       const pl = await dataHelper.getPlayer(ptreJSON[coords].player_id);
-      const mainId = Math.min(...Array.from(pl.planets, (planet) => planet.id));
+      const validIds = pl.planets.map((planet) => parseFloat(planet.id)).filter((id) => !isNaN(id));
+      const mainId = Math.min(...validIds);
       const mainPlanet = pl.planets.find((planet) => {
         return planet.id == mainId;
       });
-      ptreJSON[coords].main = mainPlanet.coords === coords || false;
+      if (typeof mainPlanet !== "undefined") {
+        ptreJSON[coords].main = mainPlanet.coords === coords || false;
+      }
     }
 
-    fetch("https://ptre.chez.gg/scripts/oglight_import_player_activity.php?tool=infinity", {
-      priority: "low",
-      method: "POST",
-      body: JSON.stringify(ptreJSON),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.code == 1) {
-          document
-            .querySelectorAll(`.ogl-stalkPlanets [data-coords^="${systemCoords[0]}:${systemCoords[1]}:"]`)
-            .forEach((e) => {
-              if (!e.classList.contains(".ptre_updated")) {
-                e.classList.add("ptre_updated");
-              }
-            });
-        }
-      });
+    ptreService.importPlayerActivity(this.gameLang, this.universe, ptreJSON).then((result) => {
+      if (result.code == 1) {
+        document.querySelectorAll(`.ogl-stalkPlanets [data-coords^="${systemCoords[0]}:${systemCoords[1]}:"]`).forEach((e) => {
+          if (!e.classList.contains(".ptre_updated")) {
+            e.classList.add("ptre_updated");
+          }
+        });
+        document.querySelectorAll(`.ogl-active [data-coords^="${systemCoords[0]}:${systemCoords[1]}:"]`).forEach((e) => {
+          if (!e.classList.contains(".ptre_updated")) {
+            e.classList.add("ptre_updated");
+          }
+        });
+      }
+    });
   }
 
   jumpGate() {
@@ -4279,7 +4223,7 @@ class OGInfinity {
           key = key.split("'")[1];
           if (key.startsWith("sr")) {
             let link = elem.appendChild(
-              createDOM("div", { class: "ogk-trashsim tooltip", target: "_blank", title: "Trahsim" })
+              createDOM("div", { class: "ogk-trashsim tooltip", target: "_blank", title: this.getTranslatedText(170) })
             );
             let apiTechData = {
               109: { level: this.json.technology[109] },
@@ -4291,25 +4235,32 @@ class OGInfinity {
               114: { level: this.json.technology[114] },
             };
             link.addEventListener("click", () => {
-              let coords = this.current.coords.split(":");
-              let json = {
-                0: [
-                  {
-                    class: this.playerClass,
-                    research: apiTechData,
-                    planet: {
-                      galaxy: coords[0],
-                      system: coords[1],
-                      position: coords[2],
+              if (!this.json.options.simulator) {
+                this.popup(
+                  null,
+                  this.createDOM("div", { class: "ogl-warning-dialog overmark" }, this.getTranslatedText(169))
+                );
+              } else {
+                let coords = this.current.coords.split(":");
+                let json = {
+                  0: [
+                    {
+                      class: this.playerClass,
+                      research: apiTechData,
+                      planet: {
+                        galaxy: coords[0],
+                        system: coords[1],
+                        position: coords[2],
+                      },
                     },
-                  },
-                ],
-              };
-              let base64 = btoa(JSON.stringify(json));
-              window.open(
-                `https://trashsim.oplanet.eu/${this.univerviewLang}?SR_KEY=${key}#prefill=${base64}`,
-                "_blank"
-              );
+                  ],
+                };
+                let base64 = btoa(JSON.stringify(json));
+                window.open(
+                  `${this.json.options.simulator}${this.univerviewLang}?SR_KEY=${key}#prefill=${base64}`,
+                  "_blank"
+                );
+              }
             });
           } else if (key.startsWith("cr")) {
             let link = elem.appendChild(createDOM("a", { class: "ogk-ogotcha tooltip", title: "Ogotcha" }));
@@ -5042,7 +4993,7 @@ class OGInfinity {
     }
 
     let cleanPlayerName = encodeURIComponent(player.name);
-    ptreService.getPlayerInfos(this.json.options.ptreTK, cleanPlayerName, player.id, frame).then((result) => {
+    ptreService.getPlayerInfos(this.gameLang, this.universe, this.json.options.ptreTK, cleanPlayerName, player.id, frame).then((result) => {
       if (result.code == 1) {
         let arrData = result.activity_array.succes == 1 ? JSON.parse(result.activity_array.activity_array) : null;
         let checkData = result.activity_array.succes == 1 ? JSON.parse(result.activity_array.check_array) : null;
@@ -6959,16 +6910,6 @@ class OGInfinity {
     let filter = settings.appendChild(createDOM("div", { class: "ogk-filter-box" }));
     let header = details.appendChild(createDOM("h1"));
     header.appendChild(createDOM("p", {}, this.getTranslatedText(88)));
-    /* since ogame 11.5.0, as it seems lifeform buildings&techs bonuses are not reported except a few */
-    if (this.hasLifeforms) {
-      details.appendChild(
-        createDOM(
-          "p",
-          { class: "ogk-box ogl-unknown-warning ogl-warning-dialog" },
-          "Warning: Lifeforms bonus acquisition currently broken; data not accurate."
-        )
-      );
-    }
     let tradeRateText = createDOM("p", { class: "ogk-tradeRate-text" }, this.getTranslatedText(119));
     let tradeRateGrid = createDOM("div", { class: "ogk-tradeRate-grid" });
     let box = details.appendChild(createDOM("div", { class: "ogk-box" }));
@@ -11202,13 +11143,15 @@ class OGInfinity {
         level = level !== -1 ? level : EXPEDITION_TOP1_POINTS.length;
         const maxExpeditionPoints = EXPEDITION_EXPEDITION_POINTS[level];
         let maxResources = EXPEDITION_MAX_RESOURCES[level];
-        // Explorer class bonus
+
         if (this.playerClass == PLAYER_CLASS_EXPLORER) {
+          // explorer class bonus
           maxResources *= (1 + this.json.explorerBonusIncreasedExpeditionOutcome) * this.json.speed;
+          // LF character class bonus
+          maxResources *= 1 + (this.json.lifeformBonus?.[this.current.id]?.classBonus.explorer || 0);
         }
-        // LF bonus
+        // LF expedition bonus
         maxResources *= 1 + (this.json.lifeformBonus?.[this.current.id]?.expeditionBonus || 0);
-        maxResources *= 1 + (this.json.lifeformBonus?.[this.current.id]?.classBonus?.expedition || 0);
 
         const availableShips = {
           202: 0,
@@ -11401,6 +11344,8 @@ class OGInfinity {
             // if same system, try the next planet until we find a different system
             while (nextPlanet.querySelector(".planet-koords").textContent.split(":", 2).join(":") == originSystem) {
               nextPlanet = rotate(nextPlanet);
+              // if place is not a planet row (planet overview on), go to first planet 
+              if (!nextPlanet.querySelector(".planet-koords")) nextPlanet = this.planetList[0];
               // if place is a moon and system does not have it, try next planet until we find one
               if (this.current.isMoon) {
                 while (!nextPlanet.querySelector(".moonlink")) {
@@ -11507,26 +11452,13 @@ class OGInfinity {
     }
   }
 
-  async updateLifeform(full = false) {
+  async updateLifeform() {
     // WIP
     if (!this.hasLifeforms) return;
     const lifeformBonus = {};
-    /*
-    if (full) {
-      for await (let planet of this.json.empire) {
-        if (planet.id !== this.current.id) {
-          lifeformBonus[planet.id] = await this.getLifeformBonus(planet.id);
-          this.json.needLifeformUpdate[planet.id] = false;
-        }
-      }
-      this.json.lifeformBonus = lifeformBonus;
-    }
-    // last called fetch has to be from current planet/moon else Ogame switches on next refresh
-    this.json.lifeformBonus[this.current.id] = await this.getLifeformBonus(this.current.id);
-    this.json.needLifeformUpdate[this.current.id] = false;
-    */
-    // temporary hack until code reworked to work with unique lifeformBonus for lf-tech
-    const bonus = await this.getLifeformBonus(this.current.id);
+    const bonus = await this.getLifeformBonus();
+    // temporary hack until code reworked to work with unique lifeformBonus
+    // TODO: implement unique lifeformBonus
     this.json.empire.forEach((planet) => {
       lifeformBonus[planet.id] = bonus;
       this.json.needLifeformUpdate[planet.id] = false;
@@ -11534,26 +11466,16 @@ class OGInfinity {
     this.json.lifeformBonus = lifeformBonus;
     this.updateEmpireProduction();
     this.saveData();
-
-    if (this.current.isMoon) {
-      let abortController = new AbortController();
-      this.abordSignal = abortController.signal;
-      window.onbeforeunload = function (e) {
-        abortController.abort();
-      };
-      fetch(this.current.planet.querySelector(".moonlink").href, { signal: abortController.signal });
-    }
   }
 
-  async getLifeformBonus(planetId) {
-    // WIP
+  async getLifeformBonus() {
     const abortController = new AbortController();
     this.abordSignal = abortController.signal;
     window.onbeforeunload = function (e) {
       abortController.abort();
     };
     return fetch(
-      `https://s${this.universe}-${this.gameLang}.ogame.gameforge.com/game/index.php?page=ingame&component=lfbonuses&cp=${planetId}`,
+      `https://s${this.universe}-${this.gameLang}.ogame.gameforge.com/game/index.php?page=ingame&component=lfbonuses`,
       { signal: abortController.signal }
     )
       .then((rep) => rep.text())
@@ -11572,141 +11494,135 @@ class OGInfinity {
           lifeformLevel[lifeform] = level;
         });
 
-        const expeditionDiv = htmlDocument.querySelector(
-          "inner-bonus-item-heading[data-toggable='subcategoryResourcesExpedition'] .subCategoryBonus"
-        );
-        const expeditionBonus = expeditionDiv
-          ? fromFormatedNumber(expeditionDiv.textContent.slice(0, -1), false, true) / 100 || 0
-          : 0;
+        const parseBonus = (text) => fromFormatedNumber(text.split("%")[0], false, true) / 100 || 0;
 
-        const crawlerDiv = htmlDocument.querySelectorAll(
-          "inner-bonus-item-heading[data-toggable='subcategoryMiscImprovedCrawler'] bonus-item"
-        );
-        const crawlerConsumptionBonus = crawlerDiv.length
-          ? fromFormatedNumber(crawlerDiv[0].textContent.slice(0, -1), false, true) / 100 || 0
-          : 0;
-        const crawlerProductionBonus = crawlerDiv.length
-          ? fromFormatedNumber(crawlerDiv[1].textContent.slice(0, -1), false, true) / 100 || 0
-          : 0;
-
-        const productionBonus = [0, 0, 0, 0];
-        /* since ogame 11.5.0 disabled, as these bonuses do not include building production bonus anymore
-        const metDiv = htmlDocument.querySelector(
+        // production bonus
+        const metalDiv = htmlDocument.querySelector(
           "inner-bonus-item-heading[data-toggable='subcategoryResources0'] .subCategoryBonus"
         );
-        const cryDiv = htmlDocument.querySelector(
+        const crystalDiv = htmlDocument.querySelector(
           "inner-bonus-item-heading[data-toggable='subcategoryResources1'] .subCategoryBonus"
         );
-        const deuDiv = htmlDocument.querySelector(
+        const deuteriumDiv = htmlDocument.querySelector(
           "inner-bonus-item-heading[data-toggable='subcategoryResources2'] .subCategoryBonus"
         );
-        // since 11.5.0 energy bonus is missing
-        const eneDiv = htmlDocument.querySelector(
+        const energyDiv = htmlDocument.querySelector(
           "inner-bonus-item-heading[data-toggable='subcategoryResources3'] .subCategoryBonus"
         );
         const productionBonus = [
-          metDiv ? fromFormatedNumber(metDiv.textContent.slice(0, -1), false, true) / 100 || 0 : 0,
-          cryDiv ? fromFormatedNumber(cryDiv.textContent.slice(0, -1), false, true) / 100 || 0 : 0,
-          deuDiv ? fromFormatedNumber(deuDiv.textContent.slice(0, -1), false, true) / 100 || 0 : 0,
-          eneDiv ? fromFormatedNumber(eneDiv.textContent.slice(0, -1), false, true) / 100 || 0 : 0,
+          metalDiv ? parseBonus(metalDiv.textContent) : 0,
+          crystalDiv ? parseBonus(crystalDiv.textContent) : 0,
+          deuteriumDiv ? parseBonus(deuteriumDiv.textContent) : 0,
+          energyDiv ? parseBonus(energyDiv.textContent) : 0,
         ];
-        */
 
-        let technologyCostReduction = {};
-        /* since ogame 11.5.0 disabled, as it seems lifeform buildings&techs bonuses are not reported except a few
-        htmlDocument.querySelectorAll("div[data-category='bonus-28'] .subItemContent").forEach((tech) => {
-          let techId = new URL(tech.querySelector("button").getAttribute("data-target")).searchParams.get(
-            "technologyId"
-          );
-          let bonus =
-            fromFormatedNumber(
-              tech.querySelector(".innerBonus").nextElementSibling.textContent.split("/")[0].trim(),
-              false,
-              true
-            ) / 100;
-          technologyCostReduction[techId] = technologyCostReduction[techId]
-            ? technologyCostReduction[techId] + bonus
-            : bonus;
-        });
-        */
-        let technologyTimeReduction = {};
-        /* since ogame 11.5.0 disabled, as it seems lifeform buildings&techs bonuses are not reported except a few
-        htmlDocument.querySelectorAll("div[data-category='bonus-11'] .subItemContent").forEach((tech) => {
-          let techId = new URL(tech.querySelector("button").getAttribute("data-target")).searchParams.get(
-            "technologyId"
-          );
-          let bonus =
-            fromFormatedNumber(
-              tech.querySelector(".innerBonus").nextElementSibling.textContent.split("/")[0].trim(),
-              false,
-              true
-            ) / 100;
-          technologyTimeReduction[techId] = technologyTimeReduction[techId]
-            ? technologyTimeReduction[techId] + bonus
-            : bonus;
-        });
-        */
+        // expedition bonus
+        const expeditionDiv = htmlDocument.querySelector(
+          "inner-bonus-item-heading[data-toggable='subcategoryResourcesExpedition'] .subCategoryBonus"
+        );
+        const expeditionBonus = expeditionDiv ? parseBonus(expeditionDiv.textContent) : 0;
 
+        // cost & time reduction bonus
+        const technologyCostReduction = {};
+        const technologyTimeReduction = {};
+        htmlDocument
+          .querySelectorAll("inner-bonus-item-heading[data-toggable^='subcategoryCostAndTime']")
+          .forEach((category) => {
+            const techId = category.getAttribute("data-toggable").split("subcategoryCostAndTime")[1];
+            const bonus = category.querySelectorAll("bonus-item");
+            technologyCostReduction[techId] = parseBonus(bonus[0].textContent);
+            technologyTimeReduction[techId] = parseBonus(bonus[1].textContent);
+          });
+
+        // class bonus
         const classBonus = {};
-        /* since ogame 11.5.0 disabled, as it seems this bonuses are not reported anymore
-        if (this.playerClass == PLAYER_CLASS_EXPLORER) {
-          htmlDocument.querySelectorAll("div[data-category='bonus-10'] .subItemContent .explorer").forEach((planet) => {
-            const bonusContainer = planet.parentElement.nextElementSibling.querySelectorAll(".innerBonus");
-            const research =
-              fromFormatedNumber(bonusContainer[0].nextElementSibling.textContent.split("/")[0].trim(), false, true) /
-              100; // value extraction not tested
-            const expedition =
-              fromFormatedNumber(bonusContainer[1].nextElementSibling.textContent.split("/")[0].trim(), false, true) /
-              (100 * (1 + this.json.explorerBonusIncreasedExpeditionOutcome) * this.json.speed);
-            // translate weird reported bonus into something useful to apply later
-            const phalanxRange =
-              fromFormatedNumber(bonusContainer[5].nextElementSibling.textContent.split("/")[0].trim(), false, true) /
-              100; // value extraction not tested
-            const inactiveLoot =
-              fromFormatedNumber(bonusContainer[6].nextElementSibling.textContent.split("/")[0].trim(), false, true) /
-              100; // value extraction not tested
+        const collectorDiv = htmlDocument.querySelector(
+          "inner-bonus-item-heading[data-toggable='subcategoryCharacterclasses1'] .subCategoryBonus"
+        );
+        const generalDiv = htmlDocument.querySelector(
+          "inner-bonus-item-heading[data-toggable='subcategoryCharacterclasses2'] .subCategoryBonus"
+        );
+        const discovererDiv = htmlDocument.querySelector(
+          "inner-bonus-item-heading[data-toggable='subcategoryCharacterclasses3'] .subCategoryBonus"
+        );
+        classBonus.miner = collectorDiv ? parseBonus(collectorDiv.textContent.split(":")[1]) : 0;
+        classBonus.warrior = generalDiv ? parseBonus(generalDiv.textContent.split(":")[1]) : 0;
+        classBonus.explorer = discovererDiv ? parseBonus(discovererDiv.textContent.split(":")[1]) : 0;
 
-            classBonus.research = classBonus.research ? classBonus.research + research : research;
-            classBonus.expedition = classBonus.expedition ? classBonus.expedition + expedition : expedition;
-            classBonus.phalanxRange = classBonus.phalanxRange ? classBonus.phalanxRange + phalanxRange : phalanxRange;
-            classBonus.inactiveLoot = classBonus.inactiveLoot ? classBonus.inactiveLoot + phalanxRange : inactiveLoot;
-            // TODO: only expedition bonus is used in expedition(), use more classBonus where needed
-          });
-        }
-        if (this.playerClass == PLAYER_CLASS_MINER) {
-          htmlDocument.querySelectorAll("div[data-category='bonus-10'] .subItemContent .miner").forEach((planet) => {
-            const bonusContainer = planet.parentElement.nextElementSibling.querySelectorAll(".innerBonus");
-            const production =
-              fromFormatedNumber(bonusContainer[0].nextElementSibling.textContent.split("/")[0].trim(), false, true) /
-              100; // value extraction not tested
-            const energy =
-              fromFormatedNumber(bonusContainer[1].nextElementSibling.textContent.split("/")[0].trim(), false, true) /
-              100; // value extraction not tested
-            const crawler =
-              fromFormatedNumber(bonusContainer[4].nextElementSibling.textContent.split("/")[0].trim(), false, true) /
-              100; // value extraction not tested
-            const maxCrawlers =
-              fromFormatedNumber(bonusContainer[5].nextElementSibling.textContent.split("/")[0].trim(), false, true) /
-              100; // value extraction not tested
-            classBonus.production = classBonus.production ? classBonus.production + production : production;
-            classBonus.energy = classBonus.energy ? classBonus.energy + energy : energy;
-            classBonus.crawler = classBonus.crawler ? classBonus.crawler + crawler : crawler;
-            classBonus.maxCrawlers = classBonus.maxCrawlers ? classBonus.maxCrawlers + maxCrawlers : maxCrawlers;
-            // TODO: use classBonus where needed
-          });
-        }
-        */
-        // TODO: add following consumptionReduction[id] = {energy: 0, deuterium: 0}
+        // crawler bonus
+        const crawlerDiv = htmlDocument.querySelectorAll(
+          "inner-bonus-item-heading[data-toggable='subcategoryMiscImprovedCrawler'] bonus-item"
+        );
+        const crawlerConsumptionBonus = crawlerDiv.length ? parseBonus(crawlerDiv[0].textContent) : 0;
+        const crawlerProductionBonus = crawlerDiv.length ? parseBonus(crawlerDiv[1].textContent) : 0;
+
         return {
           lifeformLevel: lifeformLevel,
-          classBonus: classBonus,
           productionBonus: productionBonus,
+          expeditionBonus: expeditionBonus,
           technologyCostReduction: technologyCostReduction,
           technologyTimeReduction: technologyTimeReduction,
-          expeditionBonus: expeditionBonus,
+          classBonus: classBonus,
           crawlerBonus: { production: crawlerProductionBonus, consumption: crawlerConsumptionBonus },
         };
       });
+  }
+
+  async updateLifeformPlanetBonus() {
+    const lifeformPlanetBonus = {};
+    this.json.empire.forEach((planet) => {
+      const lifeform = this.json.selectedLifeforms[planet.id];
+
+      // research cost & time reduction bonus
+      const lfLabBuildingId = Number("1" + lifeform?.slice(-1) + "103");
+      const technologyCostReduction = 0.0025 * (planet[lfLabBuildingId] > 1 ? planet[lfLabBuildingId] : 0);
+      const technologyTimeReduction = 0.02 * (planet[lfLabBuildingId] > 1 ? planet[lfLabBuildingId] : 0);
+
+      // building cost & time reduction bonus
+      const buildingCostReduction = {};
+      const buildingTimeReduction = {};
+      if (lifeform == "lifeform2") {
+        const lfCostReduction = 0.01 * planet[12108];
+        const lfTimeReduction = 0.01 * planet[12108];
+        if (lfCostReduction) {
+          Array.from(new Array(12), (x, i) => i + 12101).forEach((id) => {
+            buildingCostReduction[id] = lfCostReduction;
+            buildingTimeReduction[id] = lfTimeReduction;
+          });
+        }
+        const prodCostReduction = 0.005 * planet[12111];
+        if (prodCostReduction) {
+          [1, 2, 3, 4, 12].forEach((id) => (buildingCostReduction[id] = prodCostReduction));
+          [12101, 12102].forEach((id) => (buildingCostReduction[id] += prodCostReduction));
+        }
+      }
+
+      // production bonus
+      const productionBonus = [0, 0, 0, 0];
+      switch (lifeform) {
+        case "lifeform1":
+          productionBonus[0] = 0.015 * planet[11106];
+          productionBonus[1] = 0.015 * planet[11108];
+          productionBonus[2] = 0.01 * planet[11108];
+          break;
+        case "lifeform2":
+          productionBonus[0] = 0.02 * planet[12106];
+          productionBonus[1] = 0.02 * planet[12109];
+          productionBonus[2] = 0.02 * planet[12110];
+          break;
+        case "lifeform3":
+          productionBonus[2] = 0.02 * planet[13110];
+      }
+
+      lifeformPlanetBonus[planet.id] = {
+        buildingCostReduction: buildingCostReduction,
+        buildingTimeReduction: buildingTimeReduction,
+        productionBonus: productionBonus,
+        technologyCostReduction: technologyCostReduction,
+        technologyTimeReduction: technologyTimeReduction,
+      };
+    });
+    this.json.lifeformPlanetBonus = lifeformPlanetBonus;
   }
 
   async getEmpireInfo() {
@@ -11767,6 +11683,7 @@ class OGInfinity {
   }
 
   updateEmpireProduction() {
+    // WIP
     this.json.empire.forEach((planet) => {
       planet.production.productionFactor = 1; // temporary, TODO: change use in fleetDispatcher with computed factor
       planet.production.generalIncoming = {
@@ -11877,79 +11794,135 @@ class OGInfinity {
         },
       };
 
-      // Get exact production data (Ogame's empire data has rounding issues)
-      for (let idx = 0; idx < 3; idx++) {
-        let totalProd = 0;
-        let baseProd = planet.production.generalIncoming[idx];
-        totalProd += baseProd;
-        let mineProd = planet.production.production[idx + 1][idx];
-        totalProd += mineProd;
-        planet.production.production[idx + 1][idx] = mineProd;
-        let plasmaProd = mineProd * planet[122] * PLASMATECH_BONUS[idx];
-        totalProd += plasmaProd;
-        planet.production.production[122][idx] = plasmaProd;
-        let geoProd = mineProd * (this.geologist ? GEOLOGIST_RESOURCE_BONUS : 0);
-        totalProd += geoProd;
-        planet.production.production[1001][idx] = geoProd;
-        let officerProd = mineProd * (this.allOfficers ? OFFICER_RESOURCE_BONUS : 0);
-        totalProd += officerProd;
-        planet.production.production[1003][idx] = officerProd;
-        let allyClassProd = mineProd * (this.json.allianceClass == ALLY_CLASS_MINER ? TRADER_RESOURCE_BONUS : 0);
-        totalProd += allyClassProd;
-        planet.production.production[1005][idx] = allyClassProd;
-        let playerClassProd =
-          mineProd * (this.playerClass == PLAYER_CLASS_MINER ? this.json.minerBonusResourceProduction : 0);
-        totalProd += playerClassProd;
-        planet.production.production[1004][idx] = playerClassProd;
+      planet.production.lifeformProduction = {
+        0: 0,
+        1: 0,
+        2: 0,
+        3: 0,
+      };
 
-        const maxCrawlers = Math.floor(
-          (planet[1] + planet[2] + planet[3]) *
-            MAX_CRAWLERS_PER_MINE *
-            (this.playerClass == PLAYER_CLASS_MINER && this.geologist ? 1 + this.json.minerBonusMaxCrawler : 1)
-        );
-        let crawlerProd =
-          mineProd *
-          Math.min(planet[217], maxCrawlers) *
-          this.json.resourceBuggyProductionBoost *
-          (this.playerClass == PLAYER_CLASS_MINER ? 1 + this.json.minerBonusAdditionalCrawler : 1) *
-          (this.json.lifeformBonus ? 1 + this.json.lifeformBonus[planet.id].crawlerBonus.production : 1);
-        let crawlerPercent = Math.round((planet.production.production[217][idx] / crawlerProd) * 10) / 10;
-        crawlerPercent = this.playerClass == PLAYER_CLASS_MINER ? 1.5 : 1; // temporary hack TODO: guess true value
-        crawlerProd *= Math.min(crawlerPercent, this.playerClass == PLAYER_CLASS_MINER ? CRAWLER_OVERLOAD_MAX : 1);
-        crawlerProd = Math.min(crawlerProd, mineProd * this.json.resourceBuggyMaxProductionBoost);
-        totalProd += crawlerProd;
-        planet.production.production[217][idx] = crawlerProd;
+      //console.log("planet: " + planet.coordinates);
+
+      // TODO: compute energy detailed production if used
+      for (let idx = 0; idx < 3; idx++) {
+        //console.log("resource: " + ["metal", "crystal", "deuterium"][idx]);
+
+        const baseProd = planet.production.generalIncoming[idx];
+        const mineProd = planet.production.production[idx + 1][idx];
+        const plasmaProd = mineProd * planet[122] * PLASMATECH_BONUS[idx];
+        const geoProd = mineProd * (this.geologist ? GEOLOGIST_RESOURCE_BONUS : 0);
+        const officerProd = mineProd * (this.allOfficers ? OFFICER_RESOURCE_BONUS : 0);
+        const allyClassProd = mineProd * (this.json.allianceClass == ALLY_CLASS_MINER ? TRADER_RESOURCE_BONUS : 0);
+        const playerClassProd =
+          mineProd * (this.playerClass == PLAYER_CLASS_MINER ? this.json.minerBonusResourceProduction : 0);
 
         // TODO: compute items production
-        if (planet.production.production[1000][idx] != 0) {
-          let itemProd = (mineProd * Math.round((planet.production.production[1000][idx] / mineProd) * 10)) / 10;
-          totalProd += itemProd;
-          planet.production.production[1000][idx] = itemProd;
+        let itemProd = 0;
+
+        const lifeformBonus = this.json.lifeformBonus?.[planet.id];
+        const lifeformProd = lifeformBonus ? mineProd * lifeformBonus.productionBonus[idx] : 0;
+        const lifeformPlanetBonus = this.json.lifeformPlanetBonus[planet.id]?.productionBonus;
+        const lifeformPlanetProd = lifeformPlanetBonus ? mineProd * lifeformPlanetBonus[idx] : 0;
+
+        let totalProd = 0;
+        totalProd += mineProd;
+        totalProd += plasmaProd;
+        totalProd += geoProd;
+        totalProd += officerProd;
+        totalProd += allyClassProd;
+        totalProd += playerClassProd;
+        totalProd += itemProd;
+        totalProd += lifeformProd;
+        totalProd += lifeformPlanetProd;
+        // TODO: compute fusion reactor factor
+        totalProd -= planet.production.production[12][idx];
+
+        let crawlerProd = 0;
+        if (planet[217] > 0) {
+          const maxCrawlers = Math.floor(
+            (planet[1] + planet[2] + planet[3]) *
+              MAX_CRAWLERS_PER_MINE *
+              (this.playerClass == PLAYER_CLASS_MINER && this.geologist ? 1 + this.json.minerBonusMaxCrawler : 1)
+          );
+          crawlerProd =
+            mineProd *
+            Math.min(planet[217], maxCrawlers) *
+            this.json.resourceBuggyProductionBoost *
+            (this.playerClass == PLAYER_CLASS_MINER ? 1 + this.json.minerBonusAdditionalCrawler : 1) *
+            (this.json.lifeformBonus ? 1 + this.json.lifeformBonus[planet.id].crawlerBonus.production : 1);
+          //let crawlerPercent = this.playerClass == PLAYER_CLASS_MINER ? 1.5 : 1;  // TODO: try to guess true value
+          let crawlerPercent = 1;
+          crawlerProd *= Math.min(crawlerPercent, this.playerClass == PLAYER_CLASS_MINER ? CRAWLER_OVERLOAD_MAX : 1);
+          crawlerProd = Math.min(crawlerProd, mineProd * this.json.resourceBuggyMaxProductionBoost);
         }
 
-        // TODO: compute production factors per production unit and recompute productions
+        let prodFactor = 0;
+        let crawlerFactor = this.playerClass == PLAYER_CLASS_MINER ? 1.5 : 1;
 
-        totalProd -= planet.production.production[12][idx];
+        /*
+        for (crawlerFactor; crawlerFactor > 0; crawlerFactor -= 0.1) {
+          crawlerFactor = Math.round(crawlerFactor * 10) / 10;
+          prodFactor = (planet.production.hourly[idx] - baseProd) /
+            (totalProd + Math.min(crawlerProd * crawlerFactor, mineProd * this.json.resourceBuggyMaxProductionBoost));
+          //console.log("prod: " + prodFactor + " crawler: " + crawlerFactor);
+          if (Math.round(prodFactor * 100) / 100 <= 1) break;
+        }
+        */
+
+        prodFactor =
+          (planet.production.hourly[idx] - baseProd) /
+          (totalProd + Math.min(crawlerProd * crawlerFactor, mineProd * this.json.resourceBuggyMaxProductionBoost));
+        prodFactor = Math.round(prodFactor * 100) / 100;
+
+        crawlerProd = Math.min(
+          crawlerProd * crawlerFactor * prodFactor,
+          mineProd * prodFactor * this.json.resourceBuggyMaxProductionBoost
+        );
+
+        totalProd *= prodFactor;
+        totalProd += crawlerProd;
+        totalProd += baseProd;
+
+        //console.log("crawler factor: " + crawlerFactor);
+        //console.log("production factor: " + prodFactor);
+        //console.log("total production (computed): " + totalProd);
+
+        planet.production.production[idx + 1][idx] = mineProd * prodFactor;
+        planet.production.production[122][idx] = plasmaProd * prodFactor;
+        planet.production.production[1001][idx] = geoProd * prodFactor;
+        planet.production.production[1003][idx] = officerProd * prodFactor;
+        planet.production.production[1005][idx] = allyClassProd * prodFactor;
+        planet.production.production[1004][idx] = playerClassProd * prodFactor;
+        planet.production.production[217][idx] = crawlerProd;
+        planet.production.production[1000][idx] = itemProd * prodFactor;
+        planet.production.lifeformProduction[idx] = (lifeformProd + lifeformPlanetProd) * prodFactor;
+        /*
+        console.log("computed detailed production:");
+        console.log("base: " + planet.production.generalIncoming[idx]);
+        console.log("mine: " + planet.production.production[idx + 1][idx]);
+        console.log("plasma: " + planet.production.production[122][idx]);
+        console.log("geo: " + planet.production.production[1001][idx]);
+        console.log("officer: " + planet.production.production[1003][idx]);
+        console.log("ally class: " + planet.production.production[1005][idx]);
+        console.log("player class: " + planet.production.production[1004][idx]);
+        console.log("crawler: " + planet.production.production[217][idx]);
+        console.log("item: " + planet.production.production[1000][idx]);
+        console.log("lifeformTotal: " + planet.production.lifeformProduction[idx]);
+        console.log("lifeformTech: " + lifeformProd * prodFactor);
+        console.log("lifeformPlanet: " + lifeformPlanetProd * prodFactor);
+        console.log("----------------------------------------------");
+        */
         planet.production.hourly[idx] = totalProd;
         planet.production.daily[idx] = totalProd * 24;
         planet.production.weekly[idx] = totalProd * 24 * 7;
       }
-      // lifeform production is not included in ogames empire data, might change in future
-      if (!planet.isMoon && this.json.lifeformBonus && this.json.lifeformBonus[planet.id]) {
-        let bonus = this.json.lifeformBonus[planet.id].productionBonus;
-        let lifeformProduction = [0, 0, 0];
-        for (let idx = 0; idx < 3; idx++) {
-          let oldHourly = planet.production.hourly[idx];
-          let oldDaily = planet.production.daily[idx];
-          let oldWeekly = planet.production.weekly[idx];
-          let mineProd = planet.production.production[idx + 1][idx];
-          lifeformProduction[idx] = mineProd * bonus[idx];
-          planet.production.hourly[idx] = oldHourly + lifeformProduction[idx];
-          planet.production.daily[idx] = oldDaily + mineProd * bonus[idx] * 24;
-          planet.production.weekly[idx] = oldWeekly + mineProd * bonus[idx] * 24 * 7;
-        }
-        planet.production.lifeformProduction = lifeformProduction;
-      }
+      /*
+      console.log("planet hourly / daily / weekly productions");
+      console.log(planet.production.hourly);
+      console.log(planet.production.daily);
+      console.log(planet.production.weekly);
+      console.log("=================================================");
+      */
     });
   }
 
@@ -12690,6 +12663,7 @@ class OGInfinity {
         planet.invalidate = false;
         if (planet.moon) planet.moon.invalidate = false;
       });
+      this.updateLifeformPlanetBonus();
       this.updateEmpireProduction();
       this.updateresourceDetail();
       this.flyingFleet();
@@ -12998,6 +12972,17 @@ class OGInfinity {
         this.keepTooltip = false;
       });
       actBtn.addEventListener("click", (e) => {
+        // Add player to History in order to send his activities
+        this.json.searchHistory.forEach((elem, i) => {
+          if (elem.id == player.id) {
+            this.json.searchHistory.splice(i, 1);
+          }
+        });
+        this.json.searchHistory.push(player);
+        if (this.json.searchHistory.length > 5) {
+          this.json.searchHistory.shift();
+        }
+        this.saveData();
         if (this.page != "galaxy") {
           let coords = document
             .querySelector(".ogl-tooltip .ogl-stalkPlanets a.ogl-main")
@@ -13223,7 +13208,8 @@ class OGInfinity {
       return coordsA - coordsB;
     });
     let domArr = [];
-    const mainId = Math.min(...Array.from(sorted, (planet) => planet.id));
+    const validIds = sorted.map((planet) => parseFloat(planet.id)).filter((id) => !isNaN(id));
+    const mainId = Math.min(...validIds);
     sorted.forEach((planet) => {
       let coords = planet.coords.split(":");
       let a = createDOM("a");
@@ -13295,7 +13281,7 @@ class OGInfinity {
         if (e == playerid) o.splice(i, 1);
       });
       this.json.sideStalk.push(playerid);
-      if (this.json.sideStalk.length > 10) {
+      if (this.json.sideStalk.length > 20) {
         this.json.sideStalk.shift();
       }
       this.saveData();
@@ -13379,7 +13365,7 @@ class OGInfinity {
           watchlistBtn.addEventListener("click", () => {
             sideStalk.replaceChildren();
             sideStalk.appendChild(
-              createDOM("div", { class: "title" }, "Historic " + this.json.sideStalk.length + "/10")
+              createDOM("div", { class: "title" }, "Historic " + this.json.sideStalk.length + "/20")
             );
             sideStalk.appendChild(createDOM("hr"));
             this.json.sideStalk
@@ -13556,6 +13542,7 @@ class OGInfinity {
         ptreJSON[id].position = coords[2];
         ptreJSON[id].spy_message_ts = timestamp;
         ptreJSON[id].moon = {};
+        ptreJSON[id].main = false;
         if (type == 1) {
           ptreJSON[id].activity = "*";
           ptreJSON[id].moon.activity = "60";
@@ -13654,7 +13641,7 @@ class OGInfinity {
       this.sortTable(this.reportList);
     }
     if (Object.keys(ptreJSON).length > 0) {
-      ptreService.importPlayerActivity(ptreJSON).finally(() => "Do nothing");
+      ptreService.importPlayerActivity(this.gameLang, this.universe, ptreJSON).finally(() => "Do nothing");
     }
   }
 
@@ -13887,34 +13874,41 @@ class OGInfinity {
         location.href = fleetLink;
       });
       simulateBtn.addEventListener("click", () => {
-        let apiTechData = {
-          109: { level: this.json.technology[109] },
-          110: { level: this.json.technology[110] },
-          111: { level: this.json.technology[111] },
-          115: { level: this.json.technology[115] },
-          117: { level: this.json.technology[117] },
-          118: { level: this.json.technology[118] },
-          114: { level: this.json.technology[114] },
-        };
-        let coords = this.current.coords.split(":");
-        let json = {
-          0: [
-            {
-              class: this.playerClass,
-              research: apiTechData,
-              planet: {
-                galaxy: coords[0],
-                system: coords[1],
-                position: coords[2],
+        if (!this.json.options.simulator) {
+          this.popup(
+            null,
+            this.createDOM("div", { class: "ogl-warning-dialog overmark" }, this.getTranslatedText(169))
+          );
+        } else {
+          let apiTechData = {
+            109: { level: this.json.technology[109] },
+            110: { level: this.json.technology[110] },
+            111: { level: this.json.technology[111] },
+            115: { level: this.json.technology[115] },
+            117: { level: this.json.technology[117] },
+            118: { level: this.json.technology[118] },
+            114: { level: this.json.technology[114] },
+          };
+          let coords = this.current.coords.split(":");
+          let json = {
+            0: [
+              {
+                class: this.playerClass,
+                research: apiTechData,
+                planet: {
+                  galaxy: coords[0],
+                  system: coords[1],
+                  position: coords[2],
+                },
               },
-            },
-          ],
-        };
-        let base64 = btoa(JSON.stringify(json));
-        window.open(
-          `https://trashsim.oplanet.eu/${this.univerviewLang}?SR_KEY=${report.apiKey}#prefill=${base64}`,
-          "_blank"
-        );
+            ],
+          };
+          let base64 = btoa(JSON.stringify(json));
+          window.open(
+            `${this.json.options.simulator}${this.univerviewLang}?SR_KEY=${report.apiKey}#prefill=${base64}`,
+            "_blank"
+          );
+        }
       });
 
       opt.appendChild(createDOM("button", { class: "icon icon_eye", onclick: report.spy }));
@@ -14050,33 +14044,30 @@ class OGInfinity {
   }
 
   sideLock(add) {
-    document.querySelectorAll(".ogl-sideLock").forEach((e) => e.remove());
-    let handleLock = (coords, planet) => {
-      let splittedCoords = coords.split(":");
-      let missing = this.json.missing[coords];
-      let moon = false;
-      if (coords.includes("M")) {
-        moon = true;
-      }
+    document.querySelectorAll(".ogl-sideLock, .ogl-sideLockRemove").forEach((e) => e.remove());
+    const handleLock = (coords, planet) => {
+      const splittedCoords = coords.split(":");
+      const missing = this.json.missing[coords];
+      const moon = coords.includes("M") ? true : false;
       if (missing) {
-        let btn = createDOM("button", { class: "ogl-sideLock tooltip tooltipClose tooltipLeft" });
-        planet.appendChild(btn);
+        const btn = createDOM("button", { class: "ogl-sideLock tooltip tooltipClose tooltipLeft" });
         if (moon) {
           btn.classList.add("ogl-moonLock");
         }
-        let div = createDOM("div");
-        div.replaceChildren(
-          createDOM("div", { style: "width: 75px" }, "Missing "),
-          createDOM("hr"),
-          createDOM("div", { class: "ogl-metal" }, `M: ${toFormatedNumber(Math.max(0, missing[0]), null, true)}`),
-          createDOM("div", { class: "ogl-crystal" }, `C: ${toFormatedNumber(Math.max(0, missing[1]), null, true)}`),
-          createDOM("div", { class: "ogl-deut" }, `D: ${toFormatedNumber(Math.max(0, missing[2]), null, true)}`),
-          createDOM("hr")
-        );
-        let deleteBtn = div.appendChild(createDOM("div", { style: "width: 75px;", class: "icon icon_against" }));
         if (missing[0] + missing[1] + missing[2] == 0) {
           btn.classList.add("ogl-sideLockFilled");
         }
+        planet.appendChild(btn);
+        const div = createDOM("div");
+        div.append(
+          createDOM("div", { style: "width: 75px" }, this.getTranslatedText(39)),
+          createDOM("hr"),
+          createDOM("div", { class: "ogl-metal" }, `${toFormatedNumber(Math.max(0, missing[0]), null, true)}`),
+          createDOM("div", { class: "ogl-crystal" }, `${toFormatedNumber(Math.max(0, missing[1]), null, true)}`),
+          createDOM("div", { class: "ogl-deut" }, `${toFormatedNumber(Math.max(0, missing[2]), null, true)}`),
+          createDOM("hr")
+        );
+        const deleteBtn = div.appendChild(createDOM("div", { style: "width: 75px;", class: "icon icon_against" }));
         deleteBtn.addEventListener("click", () => {
           delete this.json.missing[coords];
           this.json.needSync = true;
@@ -14091,21 +14082,42 @@ class OGInfinity {
           this.tooltip(btn, div, false, { left: true });
         }
         btn.addEventListener("click", () => {
-          let type = moon ? 3 : 1;
-          let link = `?page=ingame&component=fleetdispatch&galaxy=${splittedCoords[0]}&system=${
-            splittedCoords[1]
-          }&position=${splittedCoords[2].slice(0, -1)}&type=${type}&mission=${
-            this.json.options.harvestMission
-          }&oglMode=2`;
+          const link =
+            `?page=ingame&component=fleetdispatch&galaxy=${splittedCoords[0]}&system=${splittedCoords[1]}` +
+            `&position=${splittedCoords[2].slice(0, -1)}&type=${moon ? 3 : 1}` +
+            `&mission=${this.json.options.harvestMission}&oglMode=2`;
           window.location.href = "https://" + window.location.host + window.location.pathname + link;
         });
       }
     };
     this.planetList.forEach((planet) => {
-      let coords = planet.querySelector(".planet-koords").textContent;
+      const coords = planet.querySelector(".planet-koords").textContent;
       handleLock(coords + "P", planet);
       handleLock(coords + "M", planet);
     });
+    if (document.querySelector(".ogl-sideLock")) {
+      const deleteAllEmpty = createDOM("button", { class: "ogl-sideLockRemove tooltip" });
+      const deleteAllFilled = createDOM("button", { class: "ogl-sideLockRemove ogl-sideLockRemoveFilled tooltip" });
+      const sidePlanetDiv = document.querySelector("div#cutty") || document.querySelector("div#norm");
+      sidePlanetDiv.append(deleteAllEmpty, deleteAllFilled);
+      const deleteAll = (condition) => {
+        for (const coords in this.json.missing) {
+          const missing = this.json.missing[coords];
+          if (condition(this.json.missing[coords])) {
+            delete this.json.missing[coords];
+            this.json.needSync = true;
+          }
+        }
+        this.saveData();
+        this.sideLock();
+      };
+      deleteAllEmpty.addEventListener("click", () => {
+        deleteAll((missing) => missing[0] + missing[1] + missing[2] != 0);
+      });
+      deleteAllFilled.addEventListener("click", () => {
+        deleteAll((missing) => missing[0] + missing[1] + missing[2] == 0);
+      });
+    }
   }
 
   highlightTarget() {
@@ -14521,6 +14533,11 @@ class OGInfinity {
           .sort((a, b) => b - a)
           .slice(0, igfn)
           .map((x) => (labLvl += x));
+      } else {
+        const technologyCostReduction = this.json.lifeformPlanetBonus[object.id]?.technologyCostReduction;
+        const technologyTimeReduction = this.json.lifeformPlanetBonus[object.id]?.technologyTimeReduction;
+        costFactor -= technologyCostReduction ? technologyCostReduction : 0;
+        timeFactor -= technologyTimeReduction ? technologyTimeReduction : 0;
       }
       if (this.json.lifeformBonus && this.json.lifeformBonus[object.id]) {
         if (
@@ -14640,6 +14657,13 @@ class OGInfinity {
     let nanite = object ? (object[15] ? object[15] : 0) : 0;
     if (id >= 11101) lvl = Math.max(lvl, 1); // needed for demolish to lvl 0
 
+    if (object) {
+      const buildingCostReduction = this.json.lifeformPlanetBonus[object.id]?.buildingCostReduction[id];
+      const buildingTimeReduction = this.json.lifeformPlanetBonus[object.id]?.buildingTimeReduction[id];
+      costFactor -= buildingCostReduction ? buildingCostReduction : 0;
+      timeFactor -= buildingTimeReduction ? buildingTimeReduction : 0;
+    }
+
     if (object && this.json.lifeformBonus && this.json.lifeformBonus[object.id]) {
       if (
         this.json.lifeformBonus[object.id].technologyCostReduction &&
@@ -14692,6 +14716,10 @@ class OGInfinity {
       ),
       1
     );
+
+    // remove any time reduction applied by side effect on regular tech by cost reduction LF tech
+    if (costFactor < 1 && id < 11101) time /= costFactor;
+
     if (BUIDLING_INFO[id].factorTime) {
       time = Math.max(
         Math.round(
@@ -15146,24 +15174,28 @@ class OGInfinity {
       114: { level: this.json.technology[114] },
     };
     btn.addEventListener("click", () => {
-      let coords = this.current.coords.split(":");
-      let json = {
-        0: [
-          {
-            class: this.playerClass,
-            research: apiTechData,
-            planet: {
-              galaxy: coords[0],
-              system: coords[1],
-              position: coords[2],
+      if (!this.json.options.simulator) {
+        this.popup(null, this.createDOM("div", { class: "ogl-warning-dialog overmark" }, this.getTranslatedText(169)));
+      } else {
+        let coords = this.current.coords.split(":");
+        let json = {
+          0: [
+            {
+              class: this.playerClass,
+              research: apiTechData,
+              planet: {
+                galaxy: coords[0],
+                system: coords[1],
+                position: coords[2],
+              },
+              ships: ships,
             },
-            ships: ships,
-          },
-        ],
-        settings: this.json.trashsimSettings,
-      };
-      let base64 = btoa(JSON.stringify(json));
-      window.open(`https://trashsim.oplanet.eu/${this.univerviewLang}?#prefill=${base64}`, "_blank");
+          ],
+          settings: this.json.trashsimSettings,
+        };
+        let base64 = btoa(JSON.stringify(json));
+        window.open(`${this.json.options.simulator}${this.univerviewLang}?#prefill=${base64}`, "_blank");
+      }
     });
   }
 
@@ -16031,9 +16063,9 @@ class OGInfinity {
       text: [
         /*0*/ {
           de: "Einstellungen",
-          en: "Setting",
+          en: "Settings",
           es: "Ajustes",
-          fr: "Gestion des données",
+          fr: "Paramètres",
           tr: "Ayarlar",
         },
         /*1*/ {
@@ -16268,11 +16300,11 @@ class OGInfinity {
           tr: "Etkinlik zamanlayıcılarını göster",
         },
         /*34*/ {
-          de: "Automatisches Abrufen von Imperium deaktivieren",
-          en: "Disable auto fetch Empire",
-          es: "Desactivar la actualización automática del Imperio",
-          fr: "Désactiver la récupération automatique de l'Empire",
-          tr: "İmparatorluğu otomatik getirmeyi devre dışı bırak",
+          de: "Weniger aggressives automatisches Empire-Update",
+          en: "Less aggressive empire automatic update",
+          es: "Actualización automática del Imperio menos agresiva",
+          fr: "Récupération automatique de l'Empire moins agressif",
+          tr: "Daha az agresif imparatorluk otomatik güncellemesi",
         },
         /*35*/ {
           de: "Rentabilitätswert",
@@ -17213,6 +17245,27 @@ class OGInfinity {
           tr: "Veri yükleniyor. Lütfen bekleyin...",
         },
         /*169*/ {
+          de: "Externes Tool nicht in 'Einstellung' konfiguriert",
+          en: "External tool not configured in 'Settings'",
+          es: "Herramienta externa sin configurar en 'Ajustes'",
+          fr: "Outil externe non configuré dans 'Paramètres'",
+          tr: "Harici takım 'Ayarlar' da yapılandırılmamış",
+        },
+        /*170*/ {
+          de: "Kampfsimulator",
+          en: "Battle simulator",
+          es: "Simulador de batallas",
+          fr: "Simulateur de combat",
+          tr: "Savaş simülatörü",
+        },
+        /*171*/ {
+          de: "Wähle eine Option...",
+          en: "Select option...",
+          es: "Seleccionar opción...",
+          fr: "Sélectionnez l'option...",
+          tr: "Seçeneği seçin...",
+        },
+        /*172*/ {
           de: "",
           en: "",
           es: "",
@@ -17311,7 +17364,8 @@ class OGInfinity {
       this.updateServerSettings(true);
       this.getAllianceClass();
       this.initializeLFTypeName();
-      await this.updateLifeform(true);
+      await this.updateEmpireData(true);
+      await this.updateLifeform();
       document.querySelector(".ogl-dialog .close-tooltip").click();
     });
     dataDiv.appendChild(createDOM("hr"));
@@ -17356,13 +17410,13 @@ class OGInfinity {
         this.getTranslatedText(34)
       )
     );
-    let disableautofetchempirebox = optiondiv.appendChild(createDOM("input", { type: "checkbox" }));
-    disableautofetchempirebox.addEventListener("change", () => {
-      this.json.options.disableautofetchempire = disableautofetchempirebox.checked;
+    let lessAggressiveEmpireAutomaticUpdateBox = optiondiv.appendChild(createDOM("input", { type: "checkbox" }));
+    lessAggressiveEmpireAutomaticUpdateBox.addEventListener("change", () => {
+      this.json.options.lessAggressiveEmpireAutomaticUpdate = lessAggressiveEmpireAutomaticUpdateBox.checked;
       this.saveData();
     });
-    if (this.json.options.disableautofetchempire) {
-      disableautofetchempirebox.checked = true;
+    if (this.json.options.lessAggressiveEmpireAutomaticUpdate) {
+      lessAggressiveEmpireAutomaticUpdateBox.checked = true;
     }
     let fleetActivity = featureSettings.appendChild(
       this.createDOM(
@@ -17700,16 +17754,28 @@ class OGInfinity {
         placeholder: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
       })
     );
+    let simulator = keys.appendChild(createDOM("span", {}, this.getTranslatedText(170)));
+    let simulatorInput = createDOM("select", { class: "ogl-simulator tooltip" });
+    simulatorInput.append(
+      createDOM("option", { value: "", disabled: "true" }, this.getTranslatedText(171)),
+      createDOM("option", { value: "https://battlesim.logserver.net/" }, "Logserver - Battlesim"),
+      createDOM("option", { value: "https://obatsim.stevecohen.fr/" }, "Ogame Battle Simulator"),
+      createDOM("option", { value: "https://simulator.ogame-tools.com/" }, "Ogame Tools - Simulator"),
+      createDOM("option", { value: "https://webapp-universe.net/ogf/change_language/" }, "OGF")
+    );
+    simulatorInput.value = this.json.options.simulator;
+    simulator.appendChild(simulatorInput);
     settingDiv.appendChild(saveBtn);
     saveBtn.addEventListener("click", () => {
       this.json.options.rvalLimit = fromFormatedNumber(rvalInput.value, true);
-      if (ptreInput.value && ptreInput.value.replace(/-/g, "").length == 18 && ptreInput.value.indexOf("TM") == 0) {
+      if (ptreInput.value && ptreInput.value.replace(/-/g, "").length === 18 && ptreInput.value.startsWith("TM")) {
         this.json.options.ptreTK = ptreInput.value;
       } else {
         this.json.options.ptreTK = "";
         // TODO: Display an error message "Invalid PTRE Team Key Format. TK should look like: TM-XXXX-XXXX-XXXX-XXXX"
       }
       this.json.options.pantryKey = pantryInput.value;
+      this.json.options.simulator = simulatorInput.value;
       this.json.options.expedition.defaultTime = Math.max(1, Math.min(~~expeditionDefaultTime.value, 16));
       this.json.options.expedition.limitCargo = Math.max(1, Math.min(~~expeditionLimitCargo.value, 500)) / 100;
       this.json.options.expedition.rotationAfter = Math.max(1, Math.min(~~expeditionRotationAfter.value, 16));
@@ -17989,7 +18055,7 @@ class OGInfinity {
     let prodDiffMSE = prodDiff.map((x, n) => (x * tradeRate[0]) / tradeRate[n]).reduce((sum, cur) => sum + cur, 0);
     let buildingCostMSE = 0;
     for (let lvl = baselvl; lvl <= tolvl; lvl++) {
-      buildingCostMSE += this.building(technoId, lvl, false, false, false, object)
+      buildingCostMSE += this.building(technoId, lvl, object)
         .cost.map((x, n) => (x * tradeRate[0]) / tradeRate[n])
         .reduce((sum, cur) => sum + cur, 0);
     }
@@ -18898,7 +18964,7 @@ class OGInfinity {
 
   initializeLFTypeName() {
     if (!this.hasLifeforms) return;
-    fetch("/game/index.php?page=ingame&component=lfsettings")
+    fetch(`/game/index.php?page=ingame&component=lfsettings&cp=${this.current.id}`)
       .then((rep) => rep.text())
       .then((str) => {
         const htmlDocument = new window.DOMParser().parseFromString(str, "text/html");
@@ -18907,6 +18973,8 @@ class OGInfinity {
           const lifeformIcon = lfName.parentElement.querySelector(".lifeform1, .lifeform2, .lifeform3, .lifeform4");
           this.json.lfTypeNames[lfName.textContent.trim()] = lifeformIcon.classList[1];
         });
+        // last fetch has to be from current planet/moon else Ogame switches on next refresh
+        if (this.current.isMoon) fetch(this.current.planet.querySelector(".moonlink").href);
       });
   }
 
