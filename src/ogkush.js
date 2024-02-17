@@ -12593,13 +12593,13 @@ class OGInfinity {
     sum.appendChild(sumres);
 
     
-    let sumMsuSideDiv = sum.appendChild(createDOM("div", { class: "ogl-sum-symbol" }, "MSU"));
+    let sumMsuSideDiv = sum.appendChild(createDOM("div", { class: "ogl-sum-symbol tooltip", "data-title": this.getTranslatedText(173)}, this.getTranslatedText(172)));
     sum.appendChild(fullSumresMsu);
 
     list.appendChild(sum);
 
     let sumMSU = createDOM("div", { class: "smallplanet smaller ogl-summary" });
-    sumMSU.appendChild(createDOM("div", { class: "ogl-sum-symbol" }, "ΣΣ MSU"));
+    sumMSU.appendChild(createDOM("div", { class: "ogl-sum-symbol tooltip", "data-title": this.getTranslatedText(173)}, "ΣΣ "+this.getTranslatedText(172)));
     sumMSU.appendChild(fullSumresMsu.cloneNode(true));
     list.appendChild(sumMSU);
 
@@ -17266,6 +17266,20 @@ class OGInfinity {
           tr: "Seçeneği seçin...",
         },
         /*172*/ {
+          de: "MSE",
+          en: "MSU",
+          es: "MSU",
+          fr: "USM",
+          tr: "MSB",
+        },
+        /*173*/ {
+          de: "Summe als Standardmetalleinheit",
+          en: "Sum as Metal standard unit",
+          es: "Suma como unidad estándar de metal",
+          fr: "Somme en unité standard de métal",
+          tr: "Metal standart birimi olarak toplam",
+        },
+        /*174*/ {
           de: "",
           en: "",
           es: "",
