@@ -175,6 +175,7 @@ const UNIVERSVIEW_LANGS = [
   "el",
   "zh",
   "ko",
+  "br",
 ];
 
 const PLAYER_CLASS_EXPLORER = 3;
@@ -6298,8 +6299,8 @@ class OGInfinity {
       "fi",
       "tw",
       "gr",
-      "br",
       "nl",
+      "br",
       "hr",
       "sk",
       "cz",
@@ -15582,9 +15583,8 @@ class OGInfinity {
 
   getTranslatedText(id, type = "text") {
     let language = this.gameLang;
-    if (language == "br") language = "pt";
     language = ["ar", "mx"].includes(language) ? "es" : language;
-    language = ["de", "en", "es", "fr", "tr"].includes(language) ? language : "en";
+    language = ["de", "en", "es", "fr", "tr", "br"].includes(language) ? language : "en";
     let translation = {
       tech: {
         1: {
@@ -15593,6 +15593,7 @@ class OGInfinity {
           es: "Mina de metal",
           fr: "Mine de métal",
           tr: "Metal Madeni",
+          br: "Mina de Metal",
         },
         2: {
           de: "Kristallmine",
@@ -15600,6 +15601,7 @@ class OGInfinity {
           es: "Mina de cristal",
           fr: "Mine de cristal",
           tr: "Kristal Madeni",
+          br: "Mina de Cristal",
         },
         3: {
           de: "Deuterium-Synthetisierer",
@@ -15607,6 +15609,7 @@ class OGInfinity {
           es: "Sintetizador de deuterio",
           fr: "Synthétiseur de deutérium",
           tr: "Deuterium Madeni",
+          br: "Sintetizador de Deutério",
         },
         4: {
           de: "Solarkraftwerk",
@@ -15614,6 +15617,7 @@ class OGInfinity {
           es: "Planta de energía solar",
           fr: "Centrale électrique solaire",
           tr: "Solar Enerji Santrali",
+          br: "Planta de Energia Solar",
         },
         12: {
           de: "Fusionskraftwerk",
@@ -15621,6 +15625,7 @@ class OGInfinity {
           es: "Planta de fusión",
           fr: "Centrale électrique de fusion",
           tr: "Füzyoenerji Santrali",
+          br: "Reator de fusão",
         },
         14: {
           de: "Roboterfabrik",
@@ -15628,6 +15633,7 @@ class OGInfinity {
           es: "Fábrica de robots",
           fr: "Usine de robots",
           tr: "Robot Fabrikası",
+          br: "Fabrica de Robos",
         },
         15: {
           de: "Nanitenfabrik",
@@ -15635,6 +15641,7 @@ class OGInfinity {
           es: "Fábrica de nanobots",
           fr: "Usine de nanites",
           tr: "Nanit Fabrikasi",
+          br: "Fabrica de nanites",
         },
         21: {
           de: "Raumschiffswerft",
@@ -15642,6 +15649,7 @@ class OGInfinity {
           es: "Hangar",
           fr: "Chantier spatial",
           tr: "Uzay Tersanesi",
+          br: "Hangar",
         },
         22: {
           de: "Metallspeicher",
@@ -15649,6 +15657,7 @@ class OGInfinity {
           es: "Almacén de metal",
           fr: "Hangar de métal",
           tr: "Metal Deposu",
+          br: "Depósito de metal",
         },
         23: {
           de: "Kristallspeicher",
@@ -15656,6 +15665,7 @@ class OGInfinity {
           es: "Almacén de cristal",
           fr: "Hangar de cristal",
           tr: "Kristal Deposu",
+          br: "Depósito de Cristal",
         },
         24: {
           de: "Deuteriumtank",
@@ -15663,6 +15673,7 @@ class OGInfinity {
           es: "Contenedor de deuterio",
           fr: "Réservoir de deutérium",
           tr: "Deuterium Tankeri",
+          br: "Deposito de deutério",
         },
         31: {
           de: "Forschungslabor",
@@ -15670,6 +15681,7 @@ class OGInfinity {
           es: "Laboratorio de investigación",
           fr: "Laboratoire de recherche",
           tr: "Araştırma Laboratuvarı",
+          br: "Laboratório de Pesquisas",
         },
         33: {
           de: "Terraformer",
@@ -15677,6 +15689,7 @@ class OGInfinity {
           es: "Terraformer",
           fr: "Terraformeur",
           tr: "Terraformer",
+          br: "Terraformador",
         },
         34: {
           de: "Allianzdepot",
@@ -15684,6 +15697,7 @@ class OGInfinity {
           es: "Depósito de la alianza",
           fr: "Dépôt de ravitaillement",
           tr: "İttifak Deposu",
+          br: "Depósito da aliança",
         },
         36: {
           de: "Raumdock",
@@ -15691,6 +15705,7 @@ class OGInfinity {
           es: "Astillero orbital",
           fr: "Dock spatial",
           tr: "Uzay İskelesi",
+          br: "Estaleiro Espacial",
         },
         41: {
           de: "Mondbasis",
@@ -15698,6 +15713,7 @@ class OGInfinity {
           es: "Base lunar",
           fr: "Base lunaire",
           tr: "Ay Üssü",
+          br: "Base Lunar",
         },
         42: {
           de: "Sensorphalanx",
@@ -15705,6 +15721,7 @@ class OGInfinity {
           es: "Sensor Phalanx",
           fr: "Phalange de capteur",
           tr: "Sensör Filanx",
+          br: "Sensor Phalanx",
         },
         43: {
           de: "Sprungtor",
@@ -15712,6 +15729,7 @@ class OGInfinity {
           es: "Salto cuántico",
           fr: "Porte de saut spatial",
           tr: "Sıçrama Geçidi",
+          br: "Portal de Salto Quântico",
         },
         44: {
           de: "Raketensilo",
@@ -15719,6 +15737,7 @@ class OGInfinity {
           es: "Silo",
           fr: "Silo de missiles",
           tr: "Füze Silosu",
+          br: "Silo de mísseis",
         },
         106: {
           de: "Spionagetechnik",
@@ -15726,6 +15745,7 @@ class OGInfinity {
           es: "Tecnología de espionaje",
           fr: "Technologie Espionnage",
           tr: "Casusluk Tekniği",
+          br: "Tecnologia de Espionagem",
         },
         108: {
           de: "Computertechnik",
@@ -15733,6 +15753,7 @@ class OGInfinity {
           es: "Tecnología de computación",
           fr: "Technologie Ordinateur",
           tr: "Bilgisayar Tekniği",
+          br: "Tecnologia de Computadores",
         },
         109: {
           de: "Waffentechnik",
@@ -15740,6 +15761,7 @@ class OGInfinity {
           es: "Tecnología militar",
           fr: "Technologie Armes",
           tr: "Silah Tekniği",
+          br: "Tecnologia de armas",
         },
         110: {
           de: "Schildtechnik",
@@ -15747,6 +15769,7 @@ class OGInfinity {
           es: "Tecnología de defensa",
           fr: "Technologie Bouclier",
           tr: "Kalkan Tekniği",
+          br: "Tecnologia de escudo",
         },
         111: {
           de: "Raumschiffpanzerung",
@@ -15754,6 +15777,7 @@ class OGInfinity {
           es: "Tecnología de blindaje",
           fr: "Technologie Protection des vaisseaux spatiaux",
           tr: "Uzay gemisi zırhı",
+          br: "Tecnologia de blindagem",
         },
         113: {
           de: "Energietechnik",
@@ -15761,6 +15785,7 @@ class OGInfinity {
           es: "Tecnología de energía",
           fr: "Technologie énergétique",
           tr: "Enerji Tekniği",
+          br: "Tecnologia de energia",
         },
         114: {
           de: "Hyperraumtechnik",
@@ -15768,6 +15793,7 @@ class OGInfinity {
           es: "Tecnología de hiperespacio",
           fr: "Technologie hyperespace",
           tr: "Hiperuzay Tekniği",
+          br: "Tecnologia de Hiperespaço",
         },
         115: {
           de: "Verbrennungstriebwerk",
@@ -15775,6 +15801,7 @@ class OGInfinity {
           es: "Motor de combustión",
           fr: "Réacteur à combustion",
           tr: "Yanma motoru",
+          br: "Motor de combustão",
         },
         117: {
           de: "Impulstriebwerk",
@@ -15782,6 +15809,7 @@ class OGInfinity {
           es: "Motor de impulso",
           fr: "Réacteur à impulsion",
           tr: "İtki motoru",
+          br: "Motor de impulsão",
         },
         118: {
           de: "Hyperraumantrieb",
@@ -15789,6 +15817,7 @@ class OGInfinity {
           es: "Propulsor hiperespacial",
           fr: "Propulsion hyperespace",
           tr: "Hiperuzay iticisi",
+          br: "Motor propulsor de hiperespaço",
         },
         120: {
           de: "Lasertechnik",
@@ -15796,6 +15825,7 @@ class OGInfinity {
           es: "Tecnología láser",
           fr: "Technologie Laser",
           tr: "Lazer Teknolojisi",
+          br: "Tecnologia de Laser",
         },
         121: {
           de: "Ionentechnik",
@@ -15803,6 +15833,7 @@ class OGInfinity {
           es: "Tecnología iónica",
           fr: "Technologie à ions",
           tr: "İyon Teknolojisi",
+          br: "Tecnologia de íons",
         },
         122: {
           de: "Plasmatechnik",
@@ -15810,6 +15841,7 @@ class OGInfinity {
           es: "Tecnología de plasma",
           fr: "Technologie Plasma",
           tr: "Plazma Teknolojisi",
+          br: "Tecnologia de Plasma",
         },
         123: {
           de: "Intergalaktisches Forschungsnetzwerk",
@@ -15817,6 +15849,7 @@ class OGInfinity {
           es: "Red de investigación intergaláctica",
           fr: "Réseau de recherche intergalactique",
           tr: "Galaksiler arası araştırma ağı",
+          br: "Rede intergalática de pesquisas",
         },
         124: {
           de: "Astrophysik",
@@ -15824,6 +15857,7 @@ class OGInfinity {
           es: "Astrofísica",
           fr: "Astrophysique",
           tr: "Astrofizik",
+          br: "Astrofísica",
         },
         199: {
           de: "Gravitonforschung",
@@ -15831,6 +15865,7 @@ class OGInfinity {
           es: "Tecnología de gravitón",
           fr: "Technologie Graviton",
           tr: "Graviton Teknolojisi",
+          br: "Tecnologia de gravitação",
         },
         202: {
           de: "Kleiner Transporter",
@@ -15838,6 +15873,7 @@ class OGInfinity {
           es: "Nave pequeña de carga",
           fr: "Petit transporteur",
           tr: "Küçük Nakliye Gemisi",
+          br: "Cargueiro pequeno",
         },
         203: {
           de: "Großer Transporter",
@@ -15845,6 +15881,7 @@ class OGInfinity {
           es: "Nave grande de carga",
           fr: "Grand transporteur",
           tr: "Büyük Nakliye Gemisi",
+          br: "Cargueiro Grande",
         },
         204: {
           de: "Leichter Jäger",
@@ -15852,6 +15889,7 @@ class OGInfinity {
           es: "Cazador ligero",
           fr: "Chasseur léger",
           tr: "Hafif Avcı",
+          br: "Caça ligeiro",
         },
         205: {
           de: "Schwerer Jäger",
@@ -15859,6 +15897,7 @@ class OGInfinity {
           es: "Cazador pesado",
           fr: "Chasseur lourd",
           tr: "Ağır Avcı",
+          br: "Caça pesado",
         },
         206: {
           de: "Kreuzer",
@@ -15866,6 +15905,7 @@ class OGInfinity {
           es: "Crucero",
           fr: "Croiseur",
           tr: "Kruvazör",
+          br: "Cruzador",
         },
         207: {
           de: "Schlachtschiff",
@@ -15873,6 +15913,7 @@ class OGInfinity {
           es: "Nave de batalla",
           fr: "Vaisseau de bataille",
           tr: "Komuta Gemisi",
+          br: "Nave de batalha",
         },
         208: {
           de: "Kolonieschiff",
@@ -15880,6 +15921,7 @@ class OGInfinity {
           es: "Colonizador",
           fr: "Vaisseau de colonisation",
           tr: "Koloni Gemisi",
+          br: "Nave Colonizadora",
         },
         209: {
           de: "Recycler",
@@ -15887,6 +15929,7 @@ class OGInfinity {
           es: "Reciclador",
           fr: "Recycleur",
           tr: "Geri Dönüşümcü",
+          br: "Reciclador",
         },
         210: {
           de: "Spionagesonde",
@@ -15894,6 +15937,7 @@ class OGInfinity {
           es: "Sonda de espionaje",
           fr: "Sonde d`espionnage",
           tr: "Casusluk Sondası",
+          br: "Sonda de espionagem",
         },
         211: {
           de: "Bomber",
@@ -15901,6 +15945,7 @@ class OGInfinity {
           es: "Bombardero",
           fr: "Bombardier",
           tr: "Bombardıman Gemisi",
+          br: "Bombardeiro",
         },
         212: {
           de: "Solarsatellit",
@@ -15908,6 +15953,7 @@ class OGInfinity {
           es: "Satélite solar",
           fr: "Satellite solaire",
           tr: "Solar Uydu",
+          br: "Satélite solar",
         },
         213: {
           de: "Zerstörer",
@@ -15915,6 +15961,7 @@ class OGInfinity {
           es: "Destructor",
           fr: "Destructeur",
           tr: "Muhrip",
+          br: "Destruídor",
         },
         214: {
           de: "Todesstern",
@@ -15922,6 +15969,7 @@ class OGInfinity {
           es: "Estrella de la muerte",
           fr: "Étoile de la mort",
           tr: "Ölüm Yıldızı",
+          br: "Estrela da morte",
         },
         215: {
           de: "Schlachtkreuzer",
@@ -15929,6 +15977,7 @@ class OGInfinity {
           es: "Acorazado",
           fr: "Traqueur",
           tr: "Fırkateyn",
+          br: "Interceptador",
         },
         217: {
           de: "Crawler",
@@ -15936,6 +15985,7 @@ class OGInfinity {
           es: "Taladrador",
           fr: "Foreuse",
           tr: "Paletli",
+          br: "Rastejador",
         },
         218: {
           de: "Reaper",
@@ -15943,6 +15993,7 @@ class OGInfinity {
           es: "Segador",
           fr: "Faucheur",
           tr: "Azrail",
+          br: "Ceifeira",
         },
         219: {
           de: "Pathfinder",
@@ -15950,6 +16001,7 @@ class OGInfinity {
           es: "Explorador",
           fr: "Éclaireur",
           tr: "Rehber",
+          br: "Explorador",
         },
         401: {
           de: "Raketenwerfer",
@@ -15957,6 +16009,7 @@ class OGInfinity {
           es: "Lazamisiles",
           fr: "Lanceur de missiles",
           tr: "Roketatar",
+          br: "Lançador de Mísseis",
         },
         402: {
           de: "Leichtes Lasergeschütz",
@@ -15964,6 +16017,7 @@ class OGInfinity {
           es: "Láser pequeño",
           fr: "Artillerie laser légère",
           tr: "Hafif Lazer Topu",
+          br: "Laser Pequeno",
         },
         403: {
           de: "Schweres Lasergeschütz",
@@ -15971,6 +16025,7 @@ class OGInfinity {
           es: "Láser grande",
           fr: "Artillerie laser lourde",
           tr: "Ağır Lazer Topu",
+          br: "Laser pesado",
         },
         404: {
           de: "Gaußkanone",
@@ -15978,6 +16033,7 @@ class OGInfinity {
           es: "Cañón gauss",
           fr: "Canon de Gauss",
           tr: "Gaus Topu",
+          br: "Canhão de Gaus",
         },
         405: {
           de: "Ionengeschütz",
@@ -15985,6 +16041,7 @@ class OGInfinity {
           es: "Cañón iónico",
           fr: "Artillerie à ions",
           tr: "İyon Topu",
+          br: "Canhão de íons",
         },
         406: {
           de: "Plasmawerfer",
@@ -15992,6 +16049,7 @@ class OGInfinity {
           es: "Cañón de plasma",
           fr: "Lanceur de plasma",
           tr: "Plazma Atıcı",
+          br: "Canhão de Plasma",
         },
         407: {
           de: "Kleine Schildkuppel",
@@ -15999,6 +16057,7 @@ class OGInfinity {
           es: "Cúpula pequeña de protección",
           fr: "Petit bouclier",
           tr: "Küçük Kalkan Kubbesi",
+          br: "Pequeno escudo planetário",
         },
         408: {
           de: "Große Schildkuppel",
@@ -16006,6 +16065,7 @@ class OGInfinity {
           es: "Cúpula grande de protección",
           fr: "Grand bouclier",
           tr: "Büyük Kalkan Kubbesi",
+          br: "Grande escudo planetário",
         },
         502: {
           de: "Abfangrakete",
@@ -16013,6 +16073,7 @@ class OGInfinity {
           es: "Misiles antibalísticos",
           fr: "Missile d`interception",
           tr: "Yakalıyıcı Roketler",
+          br: "Míssel de interceptação",
         },
         503: {
           de: "Interplanetarrakete",
@@ -16020,8 +16081,9 @@ class OGInfinity {
           es: "Misil interplanetario",
           fr: "Missile interplanétaire",
           tr: "Gezegenler Arası Roketler",
+          br: "Míssel interplanetário",
         },
-        label: { de: "", en: "", es: "", fr: "", tr: "" },
+        label: { de: "", en: "", es: "", fr: "", tr: "", br: "" },
       },
       res: [
         {
@@ -16030,6 +16092,7 @@ class OGInfinity {
           es: "Metal",
           fr: "Métal",
           tr: "Metal",
+          br: "Metal",
         },
         {
           de: "Kristall",
@@ -16037,6 +16100,7 @@ class OGInfinity {
           es: "Cristal",
           fr: "Cristal",
           tr: "Kristal",
+          br: "Cristal",
         },
         {
           de: "Deuterium",
@@ -16044,6 +16108,7 @@ class OGInfinity {
           es: "Deuterio",
           fr: "Deutérium",
           tr: "Deuterium",
+          br: "Deutério",
         },
         {
           de: "Dunkle Materie",
@@ -16051,6 +16116,7 @@ class OGInfinity {
           es: "Materia oscura",
           fr: "Antimatière",
           tr: "Karanlık Madde",
+          br: "Matéria negra",
         },
         {
           de: "Energie",
@@ -16058,6 +16124,7 @@ class OGInfinity {
           es: "Energía",
           fr: "Énergie",
           tr: "Enerji",
+          br: "Energia",
         },
       ],
       text: [
@@ -16067,6 +16134,7 @@ class OGInfinity {
           es: "Ajustes",
           fr: "Paramètres",
           tr: "Ayarlar",
+          br: "Configurações",
         },
         /*1*/ {
           de: "Zielliste",
@@ -16074,6 +16142,7 @@ class OGInfinity {
           es: "Lista de objetivos",
           fr: "Liste des cibles",
           tr: "Hedefler Listesi",
+          br: "Lista de Alvos",
         },
         /*2*/ {
           de: "Spielersuche",
@@ -16081,6 +16150,7 @@ class OGInfinity {
           es: "Búsqueda de jugadores",
           fr: "Recherche de joueur",
           tr: "Oyuncu Arama",
+          br: "Busca de jogadores",
         },
         /*3*/ {
           de: "Statistik",
@@ -16088,6 +16158,7 @@ class OGInfinity {
           es: "Estadísticas",
           fr: "Statistiques",
           tr: "İstatistikler",
+          br: "Estatísticas",
         },
         /*4*/ {
           de: "Übersicht",
@@ -16095,6 +16166,7 @@ class OGInfinity {
           es: "Visión general",
           fr: "Aperçu",
           tr: "Genel Bakış",
+          br: "Visão geral",
         },
         /*5*/ {
           de: "Planeten Übersicht",
@@ -16102,6 +16174,7 @@ class OGInfinity {
           es: "Visión general de planetas",
           fr: "Aperçu des planètes",
           tr: "Gezegenler Genel Bakışı",
+          br: "Visão de planetas",
         },
         /*6*/ {
           de: "Hier",
@@ -16109,6 +16182,7 @@ class OGInfinity {
           es: "Aquí",
           fr: "Ici",
           tr: "Burada",
+          br: "Aqui",
         },
         /*7*/ {
           de: "Fehlerberichte",
@@ -16116,6 +16190,7 @@ class OGInfinity {
           es: "Reporte de errores",
           fr: "Rapport de bug",
           tr: "Hata Bildirme",
+          br: "Reporte de bugs",
         },
         /*8*/ {
           de: "Featureanfrage",
@@ -16123,6 +16198,7 @@ class OGInfinity {
           es: "Petición de funciones",
           fr: "Demande de fonctionnalité",
           tr: "Özellik İsteği",
+          br: "Pedir uma nova função",
         },
         /*9*/ {
           de: "Universumseigenschaften",
@@ -16130,6 +16206,7 @@ class OGInfinity {
           es: "Características del universo",
           fr: "Caractéristiques de l'univers",
           tr: "Evren Özellikleri",
+          br: "Características do Universo",
         },
         /*10*/ {
           de: "Punkte #1",
@@ -16137,6 +16214,7 @@ class OGInfinity {
           es: "Puntos #1",
           fr: "Point #1",
           tr: "1.Oyuncunun Puanı",
+          br: "Pontos Top #1",
         },
         /*11*/ {
           de: "Öko Geschwindigkeit",
@@ -16144,6 +16222,7 @@ class OGInfinity {
           es: "Velocidad economía",
           fr: "Vitesse éco",
           tr: "Ekonomi Hızı",
+          br: "Velocidade da economia",
         },
         /*12*/ {
           de: "Flottengeschwindigkeit (feindlich)",
@@ -16151,6 +16230,7 @@ class OGInfinity {
           es: "Velocidad de flota (guerra)",
           fr: "Vitesse de flotte (guerre)",
           tr: "Saldırı Filo Hızı",
+          br: "Velocidade de naves (Ataque)",
         },
         /*13*/ {
           de: "Flottengeschwindigkeit (friedlich)",
@@ -16158,6 +16238,7 @@ class OGInfinity {
           es: "Velocidad de flota (pacífica)",
           fr: "Vitesse de flotte (paisible)",
           tr: "Barışçıl Filo Hızı",
+          br: "Velocidade de naves (Pacífica)",
         },
         /*14*/ {
           de: "Flottengeschwindigkeit (halten)",
@@ -16165,6 +16246,7 @@ class OGInfinity {
           es: "Velocidad de flota (mantener)",
           fr: "Vitesse de la flotte (en attente)",
           tr: "Durma Filo Hızı",
+          br: "Velocidade de Naves (Guardar)",
         },
         /*15*/ {
           de: "Datenverwaltung",
@@ -16172,6 +16254,7 @@ class OGInfinity {
           es: "Gestión de datos",
           fr: "Gestion de données",
           tr: "Veri Yönetimi",
+          br: "Gestão de dados",
         },
         /*16*/ {
           de: "Expeditionsdaten",
@@ -16179,6 +16262,7 @@ class OGInfinity {
           es: "Datos de expediciones",
           fr: "Données d'expéditions",
           tr: "Sefer Verileri",
+          br: "Dados das expedições",
         },
         /*17*/ {
           de: "Kampfdaten",
@@ -16186,6 +16270,7 @@ class OGInfinity {
           es: "Datos de combates",
           fr: "Données des Combats",
           tr: "Savaş Verileri",
+          br: "Dados de combate",
         },
         /*18*/ {
           de: "Zieldaten",
@@ -16193,6 +16278,7 @@ class OGInfinity {
           es: "Datos de objetivos",
           fr: "Données des cibles",
           tr: "Hedef Verileri",
+          br: "Dados de alvos",
         },
         /*19*/ {
           de: "Gescannte Daten (Galaxie)",
@@ -16200,6 +16286,7 @@ class OGInfinity {
           es: "Datos escaneados (galaxia)",
           fr: "Données numérisées (galaxie)",
           tr: "Taranan Veriler (galaksi)",
+          br: "Dados escaneados (galaxia)",
         },
         /*20*/ {
           de: "Optionsdaten",
@@ -16207,6 +16294,7 @@ class OGInfinity {
           es: "Datos de opciones",
           fr: "Données d'options",
           tr: "Seçenekler Verisi",
+          br: "Dados das opções",
         },
         /*21*/ {
           de: "Cache und Temporäre Daten",
@@ -16214,6 +16302,7 @@ class OGInfinity {
           es: "Caché y datos temporales",
           fr: "Données de cache et temporaires",
           tr: "Önbellek ve Geçici Veriler",
+          br: "Cache e dados temporários",
         },
         /*22*/ {
           de: "Andere Add-On-Daten",
@@ -16221,6 +16310,7 @@ class OGInfinity {
           es: "Otros datos de la extensión",
           fr: "Données d'autres add-ons",
           tr: "Diğer Eklenti Verileri",
+          br: "Outros dados de add-on's",
         },
         /*23*/ {
           de: "Aktualisieren",
@@ -16228,6 +16318,7 @@ class OGInfinity {
           es: "Actualizar",
           fr: "Mettre à jour",
           tr: "Güncelle",
+          br: "Atualizar",
         },
         /*24*/ {
           de: "Exportieren",
@@ -16235,6 +16326,7 @@ class OGInfinity {
           es: "Exportar",
           fr: "Exportation",
           tr: "Dışa Aktar",
+          br: "Exportar",
         },
         /*25*/ {
           de: "Importieren",
@@ -16242,6 +16334,7 @@ class OGInfinity {
           es: "Importar",
           fr: "Importer",
           tr: "İçe Aktar",
+          br: "Importar",
         },
         /*26*/ {
           de: "Zurücksetzen",
@@ -16249,6 +16342,7 @@ class OGInfinity {
           es: "Resetear",
           fr: "Réinitialiser",
           tr: "Sıfırla",
+          br: "Resetar",
         },
         /*27*/ {
           de: "Speichern",
@@ -16256,6 +16350,7 @@ class OGInfinity {
           es: "Guardar",
           fr: "Sauvegarder",
           tr: "Kaydet",
+          br: "Salvar",
         },
         /*28*/ {
           de: "Am Planeten verbleibende Ressourcen",
@@ -16263,6 +16358,7 @@ class OGInfinity {
           es: "Recursos a permanecer en el planeta",
           fr: "Ressources restantes sur la planète",
           tr: "Gezegenlerde saklanacak kaynaklar",
+          br: "Recursos para manter nos planetas",
         },
         /*29*/ {
           de: "Am Planeten verbleibende Schiffe",
@@ -16270,6 +16366,7 @@ class OGInfinity {
           es: "Naves a permanecer en el planeta",
           fr: "Navires restant sur la planète",
           tr: "Gezegenlerde saklanacak gemiler",
+          br: "Naves para manter nos planetas",
         },
         /*30*/ {
           de: "Standardmission (eigene)",
@@ -16277,6 +16374,7 @@ class OGInfinity {
           es: "Misión por defecto (propio)",
           fr: "Mission par défaut (propre)",
           tr: "Varsayılan görev (kendi)",
+          br: "Missões padrão (próprias)",
         },
         /*31*/ {
           de: "Standardmission (andere)",
@@ -16284,6 +16382,7 @@ class OGInfinity {
           es: "Misión por defecto (otros)",
           fr: "Mission par défaut (autres)",
           tr: "Varsayılan görev (başkaları)",
+          br: "Missões padrão (outras)",
         },
         /*32*/ {
           de: "Standardmission (Expedition)",
@@ -16291,6 +16390,7 @@ class OGInfinity {
           es: "Misión por defecto (expedición)",
           fr: "Mission par défaut (expédition)",
           tr: "Varsayılan görev (sefer)",
+          br: "Missão padrão (expedições)",
         },
         /*33*/ {
           de: "Aktivitätstimer anzeigen",
@@ -16298,6 +16398,7 @@ class OGInfinity {
           es: "Mostrar cronómetros de actividad",
           fr: "Afficher les minuteurs d'activité",
           tr: "Etkinlik zamanlayıcılarını göster",
+          br: "Mostrar times de atividade",
         },
         /*34*/ {
           de: "Weniger aggressives automatisches Empire-Update",
@@ -16305,6 +16406,7 @@ class OGInfinity {
           es: "Actualización automática del Imperio menos agresiva",
           fr: "Récupération automatique de l'Empire moins agressif",
           tr: "Daha az agresif imparatorluk otomatik güncellemesi",
+          br: "Atualização automática do império menos agressiva",
         },
         /*35*/ {
           de: "Rentabilitätswert",
@@ -16312,6 +16414,7 @@ class OGInfinity {
           es: "Valor de rentabilidad",
           fr: "Valeur de rentabilité",
           tr: "Amortisman değeri",
+          br: "Valor de rentabilidade",
         },
         /*36*/ {
           de: "Uhren auf die lokale Zeitzone umstellen",
@@ -16319,6 +16422,7 @@ class OGInfinity {
           es: "Cambiar los relojes a la zona horaria local",
           fr: "Changer les horloges au fuseau horaire local",
           tr: "Saatleri yerel saat dilimine değiştir",
+          br: "Mostrar horário local",
         },
         /*37*/ {
           de: "Prozentsatz der derzeit im Flug befindlichen Flotte",
@@ -16326,6 +16430,7 @@ class OGInfinity {
           es: "Porcentaje de flota actualmente en vuelo",
           fr: "Pourcentage de la flotte actuellement en vol",
           tr: "Şu anda uçuşta olan filonun yüzdesi",
+          br: "Porcentagem de naves atualmente em vôo",
         },
         /*38*/ {
           de: "Fliegend",
@@ -16333,6 +16438,7 @@ class OGInfinity {
           es: "En vuelo",
           fr: "En vol",
           tr: "Havada",
+          br: "Viajando",
         },
         /*39*/ {
           de: "Fehlend",
@@ -16340,6 +16446,7 @@ class OGInfinity {
           es: "Restante",
           fr: "Manquant",
           tr: "Eksik",
+          br: "Restante",
         },
         /*40*/ {
           de: "Gesamt",
@@ -16347,6 +16454,7 @@ class OGInfinity {
           es: "Total",
           fr: "Total",
           tr: "Toplam",
+          br: "Total",
         },
         /*41*/ {
           de: "Expeditionen",
@@ -16354,6 +16462,7 @@ class OGInfinity {
           es: "Expediciones",
           fr: "Expéditions",
           tr: "Sefer",
+          br: "Expedições",
         },
         /*42*/ {
           de: "Planet(en)",
@@ -16361,6 +16470,7 @@ class OGInfinity {
           es: "planeta(s)",
           fr: "planète(s)",
           tr: "Gezegen",
+          br: "Planeta(s)",
         },
         /*43*/ {
           de: "Ankunft",
@@ -16368,6 +16478,7 @@ class OGInfinity {
           es: "Llegada",
           fr: "Arrivée",
           tr: "Varış",
+          br: "Chegada",
         },
         /*44*/ {
           de: "Dauer",
@@ -16375,6 +16486,7 @@ class OGInfinity {
           es: "Duración",
           fr: "Durée",
           tr: "Süre",
+          br: "Duração",
         },
         /*45*/ {
           de: "Rückkehr",
@@ -16382,6 +16494,7 @@ class OGInfinity {
           es: "Retorno",
           fr: "Retour",
           tr: "Dönüş",
+          br: "Retornar",
         },
         /*46*/ {
           de: "Keine Missionen...",
@@ -16389,6 +16502,7 @@ class OGInfinity {
           es: "Ninguna misión...",
           fr: "Aucune mission...",
           tr: "Görev yok...",
+          br: "Sem missões...",
         },
         /*47*/ {
           de: "Ladekapazität",
@@ -16396,6 +16510,7 @@ class OGInfinity {
           es: "Capacidad de carga",
           fr: "Fret",
           tr: "Nakliye Kapasitesi",
+          br: "Capacidade de carga",
         },
         /*48*/ {
           de: "Geschwindigkeit",
@@ -16403,6 +16518,7 @@ class OGInfinity {
           es: "Velocidad",
           fr: "Vitesse",
           tr: "Hız",
+          br: "Velocidade",
         },
         /*49*/ {
           de: "Treibstoffverbrauch",
@@ -16410,6 +16526,7 @@ class OGInfinity {
           es: "Consumo de combustible",
           fr: "Consommation",
           tr: "Yakıt tüketimi",
+          br: "Consumo de combustível",
         },
         /*50*/ {
           de: "Amortisationsdauer",
@@ -16417,6 +16534,7 @@ class OGInfinity {
           es: "Período de amortización",
           fr: "Période de remboursement",
           tr: "Amortisman süresi",
+          br: "Tempo de retorno",
         },
         /*51*/ {
           de: "Ökonomie",
@@ -16424,6 +16542,7 @@ class OGInfinity {
           es: "Economía",
           fr: "Économie",
           tr: "Ekonomi",
+          br: "Economia",
         },
         /*52*/ {
           de: "Forschung",
@@ -16431,6 +16550,7 @@ class OGInfinity {
           es: "Investigación",
           fr: "Recherche",
           tr: "Araştırma",
+          br: "Pesquisa",
         },
         /*53*/ {
           de: "Militär",
@@ -16438,6 +16558,7 @@ class OGInfinity {
           es: "Militar",
           fr: "Militaire",
           tr: "Askeri",
+          br: "Militar",
         },
         /*54*/ {
           de: "Verteidigung",
@@ -16445,6 +16566,7 @@ class OGInfinity {
           es: "Defensa",
           fr: "Défense",
           tr: "Savunma",
+          br: "Defesa",
         },
         /*55*/ {
           de: "Sieg",
@@ -16452,6 +16574,7 @@ class OGInfinity {
           es: "Victoria",
           fr: "Gagner",
           tr: "Kazandın",
+          br: "Vitória",
         },
         /*56*/ {
           de: "Niederlage",
@@ -16459,6 +16582,7 @@ class OGInfinity {
           es: "Derrota",
           fr: "Perdre",
           tr: "Kaybettin",
+          br: "Derrota",
         },
         /*57*/ {
           de: "Unentschieden",
@@ -16466,6 +16590,7 @@ class OGInfinity {
           es: "Empate",
           fr: "Dessiner",
           tr: "Berabere",
+          br: "Empate",
         },
         /*58*/ {
           de: "API in die Zwischenablage kopiert",
@@ -16473,6 +16598,7 @@ class OGInfinity {
           es: "Clave API copiada al portapapeles",
           fr: "Clé API copiée dans le presse-papiers",
           tr: "API Anahtarı panoya kopyalandı",
+          br: "Api Key copiada para área de transferência",
         },
         /*59*/ {
           de: "Verhältnis",
@@ -16480,6 +16606,7 @@ class OGInfinity {
           es: "Ratio",
           fr: "Rapport",
           tr: "Oran",
+          br: "Média",
         },
         /*60*/ {
           de: "Stunde",
@@ -16487,6 +16614,7 @@ class OGInfinity {
           es: "Hora",
           fr: "Heure",
           tr: "Saatlik Üretim",
+          br: "Hora",
         },
         /*61*/ {
           de: "Tag",
@@ -16494,6 +16622,7 @@ class OGInfinity {
           es: "Día",
           fr: "Jour",
           tr: "Günlük Üretim",
+          br: "Dia",
         },
         /*62*/ {
           de: "Woche",
@@ -16501,6 +16630,7 @@ class OGInfinity {
           es: "Semana",
           fr: "Semaine",
           tr: "Haftalık Üretim",
+          br: "Semana",
         },
         /*63*/ {
           de: "Flotte",
@@ -16508,6 +16638,7 @@ class OGInfinity {
           es: "Flota",
           fr: "Flotte",
           tr: "Filo",
+          br: "Frota",
         },
         /*64*/ {
           de: "Schiffe",
@@ -16515,6 +16646,7 @@ class OGInfinity {
           es: "naves",
           fr: "navires",
           tr: "Gemi",
+          br: "Naves",
         },
         /*65*/ {
           de: "Recycling",
@@ -16522,6 +16654,7 @@ class OGInfinity {
           es: "Reciclaje",
           fr: "Recyclage",
           tr: "GD Kapasitesi",
+          br: "Reciclagem",
         },
         /*66*/ {
           de: "Für diese Funktionen ist der Commander erforderlich ...",
@@ -16529,6 +16662,7 @@ class OGInfinity {
           es: "El oficial comandante es necesario para estas funciones...",
           fr: "L'officier de commandement est requis pour ces fonctions...",
           tr: "Bu özellikler için komutan subayı gereklidir...",
+          br: "O comandante é necessário para essa função",
         },
         /*67*/ {
           de: "Ressourcen",
@@ -16536,6 +16670,7 @@ class OGInfinity {
           es: "Recursos",
           fr: "Ressources",
           tr: "Kaynaklar",
+          br: "Recursos",
         },
         /*68*/ {
           de: "Verluste",
@@ -16543,6 +16678,7 @@ class OGInfinity {
           es: "Pérdidas",
           fr: "Pertes",
           tr: "Kayıplar",
+          br: "Perdas",
         },
         /*69*/ {
           de: "Recycled",
@@ -16550,6 +16686,7 @@ class OGInfinity {
           es: "Reciclado",
           fr: "Recyclé",
           tr: "Hurda",
+          br: "Reciclado",
         },
         /*70*/ {
           de: "Treibstoff",
@@ -16557,6 +16694,7 @@ class OGInfinity {
           es: "Combustible",
           fr: "Carburant",
           tr: "Harcanan Deu",
+          br: "Combustível",
         },
         /*71*/ {
           de: "S. Loch",
@@ -16564,6 +16702,7 @@ class OGInfinity {
           es: "Agujero negro",
           fr: "Trou noir",
           tr: "Kara Delik",
+          br: "Buraco Negro",
         },
         /*72*/ {
           de: "Beste Kämpfe",
@@ -16571,6 +16710,7 @@ class OGInfinity {
           es: "Mejores combates",
           fr: "Meilleurs combats",
           tr: "En iyi Savaşlar",
+          br: "Melhores combates",
         },
         /*73*/ {
           de: "Name",
@@ -16578,6 +16718,7 @@ class OGInfinity {
           es: "Nombre",
           fr: "Nom",
           tr: "Adı",
+          br: "Nome",
         },
         /*74*/ {
           de: "Beute",
@@ -16585,6 +16726,7 @@ class OGInfinity {
           es: "Botín",
           fr: "Pillage",
           tr: "Ganimet",
+          br: "Faturamento",
         },
         /*75*/ {
           de: "Schaden",
@@ -16592,6 +16734,7 @@ class OGInfinity {
           es: "Daños",
           fr: "Dommage",
           tr: "Hasar",
+          br: "Danos",
         },
         /*76*/ {
           de: "Trümmerfeld",
@@ -16599,6 +16742,7 @@ class OGInfinity {
           es: "Escombros",
           fr: "Débris",
           tr: "Enkaz alanı",
+          br: "Destroços",
         },
         /*77*/ {
           de: "Anpassen",
@@ -16606,6 +16750,7 @@ class OGInfinity {
           es: "Ajuste",
           fr: "Ajuster",
           tr: "Ayarla",
+          br: "Ajuste",
         },
         /*78*/ {
           de: "Items",
@@ -16613,6 +16758,7 @@ class OGInfinity {
           es: "Ítems",
           fr: "Items",
           tr: "Öğeler",
+          br: "Itens",
         },
         /*79*/ {
           de: "Aliens",
@@ -16620,6 +16766,7 @@ class OGInfinity {
           es: "Alienígenas",
           fr: "Aliens",
           tr: "Yabancılar",
+          br: "Alienígenas",
         },
         /*80*/ {
           de: "Piraten",
@@ -16627,6 +16774,7 @@ class OGInfinity {
           es: "Piratas",
           fr: "Pirates",
           tr: "Korsanlar",
+          br: "Piratas",
         },
         /*81*/ {
           de: "Spät",
@@ -16634,6 +16782,7 @@ class OGInfinity {
           es: "Retraso",
           fr: "En retard",
           tr: "Geç",
+          br: "Atraso",
         },
         /*82*/ {
           de: "Frühzeitig",
@@ -16641,6 +16790,7 @@ class OGInfinity {
           es: "Adelanto",
           fr: "En avance",
           tr: "Erken",
+          br: "Adiantado",
         },
         /*83*/ {
           de: "Leer",
@@ -16648,6 +16798,7 @@ class OGInfinity {
           es: "Vacío",
           fr: "Vide",
           tr: "Boş",
+          br: "Vazio",
         },
         /*84*/ {
           de: "Händler",
@@ -16655,6 +16806,7 @@ class OGInfinity {
           es: "Mercader",
           fr: "Marchands",
           tr: "Tüccar",
+          br: "Mercador",
         },
         /*85*/ {
           de: "Produktion",
@@ -16662,6 +16814,7 @@ class OGInfinity {
           es: "Producción",
           fr: "Production",
           tr: "Üretim",
+          br: "Produção",
         },
         /*86*/ {
           de: "Kampf",
@@ -16669,6 +16822,7 @@ class OGInfinity {
           es: "Combate",
           fr: "Combat",
           tr: "Savaş Araştırmaları",
+          br: "Combate",
         },
         /*87*/ {
           de: "Antrieb",
@@ -16676,6 +16830,7 @@ class OGInfinity {
           es: "Propulsión",
           fr: "Propulsion",
           tr: "Sürüş Araştırmaları",
+          br: "Propulsão",
         },
         /*88*/ {
           de: "Empfohlene Weiterentwicklung",
@@ -16683,6 +16838,7 @@ class OGInfinity {
           es: "Desarrollo posterior recomendado",
           fr: "Développement ultérieur recommandé",
           tr: "Tavsiye edilen ileri geliştirme (Amortisman Hesabı)",
+          br: "Desenvolvimento recomendado para o futuro",
         },
         /*89*/ {
           de: "Lebensformen",
@@ -16690,6 +16846,7 @@ class OGInfinity {
           es: "Formas de vida",
           fr: "Forme de vie",
           tr: "Canlı Türleri",
+          br: "Formas de vida",
         },
         /*90*/ {
           de: "Minen",
@@ -16697,6 +16854,7 @@ class OGInfinity {
           es: "Minas",
           fr: "Mines",
           tr: "Madenler",
+          br: "Minas",
         },
         /*91*/ {
           de: "Allgemein",
@@ -16704,6 +16862,7 @@ class OGInfinity {
           es: "General",
           fr: "Général",
           tr: "Genel",
+          br: "General",
         },
         /*92*/ {
           de: "Kämpfe",
@@ -16711,6 +16870,7 @@ class OGInfinity {
           es: "Combates",
           fr: "Combat",
           tr: "Savaşlar",
+          br: "Combates",
         },
         /*93*/ {
           de: "Astro",
@@ -16718,6 +16878,7 @@ class OGInfinity {
           es: "Astro",
           fr: "Astro",
           tr: "Astro",
+          br: "Astro",
         },
         /*94*/ {
           de: "Computer",
@@ -16725,6 +16886,7 @@ class OGInfinity {
           es: "Computación",
           fr: "Ordinateur",
           tr: "Bilgisayar T.",
+          br: "Computadores",
         },
         /*95*/ {
           de: "Hyperraum",
@@ -16732,6 +16894,7 @@ class OGInfinity {
           es: "Hiperespacio",
           fr: "Hyperespace",
           tr: "Hiperuzay T.",
+          br: "Hiperespaço",
         },
         /*96*/ {
           de: "Plasma",
@@ -16739,6 +16902,7 @@ class OGInfinity {
           es: "Plasma",
           fr: "Plasma",
           tr: "Plazma",
+          br: "Plasma",
         },
         /*97*/ {
           de: "Datum",
@@ -16746,6 +16910,7 @@ class OGInfinity {
           es: "Fecha",
           fr: "Date",
           tr: "Tarih",
+          br: "Data",
         },
         /*98*/ {
           de: "Koordinaten",
@@ -16753,6 +16918,7 @@ class OGInfinity {
           es: "Coordenadas",
           fr: "Coordonnées",
           tr: "Koordinatlar",
+          br: "Coordenadas",
         },
         /*99*/ {
           de: "Beute",
@@ -16760,6 +16926,7 @@ class OGInfinity {
           es: "Botín",
           fr: "Butin",
           tr: "Ganimet",
+          br: "Faturamento",
         },
         /*100*/ {
           de: "Flotte",
@@ -16767,6 +16934,7 @@ class OGInfinity {
           es: "Flota",
           fr: "Flotte",
           tr: "Filo",
+          br: "Frota",
         },
         /*101*/ {
           de: "Standard Expeditionsdauer",
@@ -16774,6 +16942,7 @@ class OGInfinity {
           es: "Tiempo de expedición predeterminado",
           fr: "Heure d'expédition par défaut",
           tr: "Varsayılan sefer süresi",
+          br: "Tempo padrão da epedição",
         },
         /*102*/ {
           de: "Aktionen",
@@ -16781,6 +16950,7 @@ class OGInfinity {
           es: "Acciones",
           fr: "Actions",
           tr: "Eylemler",
+          br: "Ações",
         },
         /*103*/ {
           de: "Optionen",
@@ -16788,6 +16958,7 @@ class OGInfinity {
           es: "Opciones",
           fr: "Options",
           tr: "Seçenekler",
+          br: "Opções",
         },
         /*104*/ {
           de: "Automatisches Löschen von nicht rentablen Berichten aktivieren/deaktivieren, unter Berücksichtigung von: Plünderung, Flotten- und Verteidigungs-Trümmerfeld (Deuterium zu Trümmerfeld und 70% Verteidigungsreparatur werden angenommen).",
@@ -16795,6 +16966,7 @@ class OGInfinity {
           es: "Habilitar/Deshabilitar la eliminación automática de informes no rentables teniendo en cuenta: saqueo, campo de escombros de flota y defensa (se asume deuterio al campo de escombros y 70% de reparación de defensa).",
           fr: "Activer/Désactiver la suppression automatique des rapports non rentables en tenant compte  du pillage, du champ de ruine de la flotte et de la défense (on suppose que le deuterium se transforme en champ de ruine et que 70 % de la défense est réparée).",
           tr: "Karlı olmayan raporların otomatik silinmesini etkinleştir/devre dışı bırakma: yağma, filo ve savunma enkaz alanı (deuteriumdan enkaz alanına ve %70 savunma onarımı varsayılmaktadır).",
+          br: "Ativar/Desativar atuomaticamente a detecção de reports não rentavéis: faturamento, destroços de frota e defesa (Deutério gasto até os destroços e custos de reparo de 70% da defesa são considerados)",
         },
         /*105*/ {
           de: "Minimale Rentabilität um als interessant angesehen zu werden",
@@ -16802,6 +16974,7 @@ class OGInfinity {
           es: "Retabilidad mínima de un objetivo para ser considerado interesante",
           fr: "Rentabilité minimale d'une cible pour être considéré comme intéressante",
           tr: "İlginç kabul edilecek en düşük hedef karlılık",
+          br: "Rentabilidade mínima desejada",
         },
         /*106*/ {
           de: "Spionagetabelle aktivieren/deaktivieren",
@@ -16809,6 +16982,7 @@ class OGInfinity {
           es: "Activar/desactivar la tabla de espionajes",
           fr: "Active/désactive le tableau d'espionnage",
           tr: "Casusluk tablosunu etkinleştir/devre dışı bırak",
+          br: "Ativar/Desativar tabela de espionagens",
         },
         /*107*/ {
           de: "Nicht genügend Transportschiffe...",
@@ -16816,6 +16990,7 @@ class OGInfinity {
           es: "No hay suficientes naves de transporte...",
           fr: "Pas assez de navires de transport...",
           tr: "Yeterli kargo gemisi yok...",
+          br: "Total de cargueiros insuficientes...",
         },
         /*108*/ {
           de: "Kein Kampfschiff...",
@@ -16823,6 +16998,7 @@ class OGInfinity {
           es: "Ninguna nave de combate...",
           fr: "Pas de vaisseau militaire...",
           tr: "Savaş gemisi yok...",
+          br: "Sem naves de combate...",
         },
         /*109*/ {
           de: "Keine Spionagesonde...",
@@ -16830,6 +17006,7 @@ class OGInfinity {
           es: "Ninguna sonda de espionaje...",
           fr: "Pas de sonde d'espionnage...",
           tr: "Casusluk Sondası yok...",
+          br: "Nenhuma sonda de espionagem...",
         },
         /*110*/ {
           de: "Kein Pathfinder...",
@@ -16837,6 +17014,7 @@ class OGInfinity {
           es: "Ningún explorador...",
           fr: "Pas d'éclaireur...",
           tr: "Rehber yok...",
+          br: "Sem explorador...",
         },
         /*111*/ {
           de: "Keine Mission...",
@@ -16844,6 +17022,7 @@ class OGInfinity {
           es: "Ninguna misión...",
           fr: "Pas de mission...",
           tr: "Görev yok...",
+          br: "Nenhuma missão...",
         },
         /*112*/ {
           de: "Unbekannte Expeditionsnachricht...",
@@ -16851,6 +17030,7 @@ class OGInfinity {
           es: "Mensaje de expedición desconocido...",
           fr: "Message d'expédition inconnu...",
           tr: "Bilinmeyen sefer mesajı...",
+          br: "Mensagem de expedição desconhecida...",
         },
         /*113*/ {
           de: "Hilf mir alle zu finden",
@@ -16858,6 +17038,7 @@ class OGInfinity {
           es: "Ayúdame a encontrarlos todos",
           fr: "Aidez-moi à les trouver tous",
           tr: "Onları bulmama yardım et !",
+          br: "Me ajude a encontrar todos",
         },
         /*114*/ {
           de: "Warnung: Expeditionsposition wird schwach...",
@@ -16865,6 +17046,7 @@ class OGInfinity {
           es: "Atención: la posición de expediciones está saturándose...",
           fr: "Attention: la position d'expédition devient saturée...",
           tr: "Uyarı: Sefer konumu zayıflıyor...",
+          br: "Atenção: posição da expedição está ficando ruim...",
         },
         /*115*/ {
           de: "Fehler: Keine Schiffe ausgewählt",
@@ -16872,6 +17054,7 @@ class OGInfinity {
           es: "Error: ninguna nave seleccionada",
           fr: "Erreur: aucun navire sélectionné",
           tr: "Hata: Hiç gemi seçilmedi",
+          br: "Erro: Sem naves selecionadas",
         },
         /*116*/ {
           de: "Fehler: Keine Mission verfügbar",
@@ -16879,6 +17062,7 @@ class OGInfinity {
           es: "Error: ninguna misión disponible",
           fr: "Erreur: aucune mission disponible",
           tr: "Hata: Kullanılabilir görev yok",
+          br: "Erro: Sem missões disponíveis",
         },
         /*117*/ {
           de: "Fehler: Aktueller Planet/Mond",
@@ -16886,6 +17070,7 @@ class OGInfinity {
           es: "Error: planeta/luna actual",
           fr: "Erreur: planète/lune actuelle",
           tr: "Hata: Mevcut gezegen/ay",
+          br: "Erro: Planeta/Lua atual",
         },
         /*118*/ {
           de: "Keine neue Kolonie",
@@ -16893,6 +17078,7 @@ class OGInfinity {
           es: "Ninguna colonia nueva",
           fr: "Pas de nouvelle colonie",
           tr: "Yeni koloni yok",
+          br: "Nenhuma colônia nova",
         },
         /*119*/ {
           de: "Handelskurs",
@@ -16900,6 +17086,7 @@ class OGInfinity {
           es: "Ratio de cambio",
           fr: "Taux d'échange",
           tr: "Ticaret oranı",
+          br: "Taxa de troca",
         },
         /*120*/ {
           de: "Rentabilität",
@@ -16907,6 +17094,7 @@ class OGInfinity {
           es: "Rentabilidad",
           fr: "Rentabilité",
           tr: "Amortisman",
+          br: "Rentabilidade",
         },
         /*121*/ {
           de: "Die Amortisationszeit errechnet sich aus der Differenz der Gesamtproduktion und den Kosten für die Zielstufe. Ausreichende Energieversorgung und unveränderte globale Produktionsbooster (Spieler- und Allianzklasse, Offiziere) werden vorausgesetzt. Zur Bewertung der Ressourcen wird der angegebene Handelskurs verwendet. Bei Minen wird die Änderung der Gesamtproduktion durch erhöhtes Crawler-Limit berücksichtigt, dabei wird der Produktionsfaktor und eine eventuelle Begrenzung wie angegeben verwendet. Für die Astrophysik werden die Forschungskosten und die Kosten für den Bau von Minen auf der neuen Kolonie bis zum Durchschnittslevel berücksichtigt. Die Produktionsänderung wird durch die durchschnittliche Planetenparameter angenähert, da die tatsächliche Produktion von der Temperatur und der Position der neuen Kolonie abhängt. Baukosten für die Energieversorgung oder andere Anlagen werden nicht berücksichtigt.",
@@ -16914,6 +17102,7 @@ class OGInfinity {
           es: "El período de amortización está calculado basándose en la diferencia en la producción total y el coste para el nivel objetivo. Se asume un suficiente aprovisionamiento energético y que los mejoradores de producción (clases de jugador y alianza, oficiales) permanecen inalterados. El ratio de cambio configurado se usa para valorar los recursos. Para las minas, se tiene en cuenta el cambio de la producción total debido al incremento de taladradores, usando los ajustes superiores. Para la astrofísica, se tiene en cuenta el coste de investigación y el coste de construcción de minas al nivel promedio en la nueva colonia. El cambio en la producción es aproximado usando parámetros promedio para el planeta, porque la producción real depende de la temperatura y posición de la nueva colonia. No se tienen en cuenta costes de construcción de aprovisionamiento de energía ni de otras instalaciones.",
           fr: "La période de remboursement est calculée en fonction de la différence entre la production totale et le coût pour le niveau cible. Un approvisionnement énergétique suffisant et des boosters de production globaux inchangés (classe de joueur et d'alliance, officiers) sont supposés. Le taux d'échange configuré est utilisé pour évaluer les ressources. Pour les mines, le changement de production totale dû à l'augmentation de la limite de foreuses est pris en compte, en utilisant les paramètres ci-dessus. Pour l'astrophysique, le coût de recherche et le coût de construction des mines au niveau moyen sur la nouvelle colonie sont pris en compte. Le changement de production est approximé par les paramètres moyens de la planète, car la production réelle dépend de la température et de la position de la nouvelle colonie. Les coûts de construction pour l'approvisionnement en énergie ou d'autres installations ne sont pas pris en compte.",
           tr: "Geri ödeme süresi, toplam üretimdeki farka ve hedef seviyenin maliyetine göre hesaplanır. Yeterli enerji arzı ve değişmeyen küresel üretim artırıcıları (oyuncu ve ittifak sınıfı, görevliler) varsayılır. Yapılandırılan ticaret oranı, değeri belirlemek için kullanılır. kaynaklar. Madenler için, artan paletli sınırına bağlı olarak toplam üretimdeki değişiklik, yukarıdan yapılan ayarlar kullanılarak dikkate alınır. Astrofizik için araştırma maliyeti ve yeni kolonide mayın inşa etme maliyeti ortalama seviyeye dikkate alınır. Üretimdeki değişiklik, ortalama gezegen parametrelerine yakındır, çünkü gerçek üretim yeni koloninin sıcaklığına ve konumuna bağlıdır. Enerji tedariki veya diğer tesisler için inşaat maliyetleri dikkate alınmaz.",
+          br: "O período de retorno é calculado baseado na diferença no total de produção e o custo para o level alvo. Assume-se que haja energia suficiente e reforços de produção globais (classes de jogador, aliança e oficiais) são considerados. A taxa de negociação configurada é considerada para avaliar os recursos. Para minas, a alteração da produção total devido ao aumento do limite re rastreadores é considerado, usando as configurações acima. Para astrofísica, são levados em consideração o custo da pesquisa e o custo médio de construção das minas ao nivel médio de uma nova colônia. A mudança na produção é aproximada pelos parâmetros médios pois a produção real depende da temperatura e posição da nova colônia. Os custos para construção de fornecimento de energia e outras instalações não são considerados.",
         },
         /*122*/ {
           de: "Nur Werte größer gleich 1 ...",
@@ -16921,6 +17110,7 @@ class OGInfinity {
           es: "Sólo valores superiores o iguales a 1 están permitidos...",
           fr: "Seules les valeurs supérieures ou égales à 1 sont autorisées...",
           tr: "Sadece 1'e eşit veya daha büyük değerler izin verilir...",
+          br: "Apenas valores maiores que 1 são permitidos...",
         },
         /*123*/ {
           de: "Alle Nachrichten löschen",
@@ -16928,6 +17118,7 @@ class OGInfinity {
           es: "Borrar todos los mensajes",
           fr: "Supprimer tous les messages",
           tr: "Tüm mesajları sil",
+          br: "Apagar todas as mensagens",
         },
         /*124*/ {
           de: "Feindliche Spionageberichte löschen",
@@ -16935,6 +17126,7 @@ class OGInfinity {
           es: "Borrar los informes de espionaje enemigos",
           fr: "Supprimer les rapports d'espionnage ennemis",
           tr: "Düşman casus raporlarını sil",
+          br: "Apagar relatórios de espionagem de inimigos",
         },
         /*125*/ {
           de: "Wenn aktiviert, wird die Anzahl der Crawler mit den derzeit gebauten Crawlern begrenzt.",
@@ -16942,6 +17134,7 @@ class OGInfinity {
           es: "Si está activado, el número de taladradores se limitará al número actual de construidos.",
           fr: "S'il est activé, le nombre de foreuses sera limité à celles actuellement construites.",
           tr: "Etkinleştirildiğinde, paletlilerin sayısı şu anda üretilen paletlilerle sınırlanır.",
+          br: "Se ativado, o numero de rastejadores será limitado ao numero atual de rastejadores construídos.",
         },
         /*126*/ {
           de: "Crawler Produktionsfaktor",
@@ -16949,6 +17142,7 @@ class OGInfinity {
           es: "Factor de producción de los taladradores",
           fr: "Facteur de production des foreuses",
           tr: "Paletli üretim faktörü",
+          br: "Fator de produção dos rastejadores",
         },
         /*127*/ {
           de: "Ziel",
@@ -16956,6 +17150,7 @@ class OGInfinity {
           es: "Destino",
           fr: "Destination",
           tr: "Hedef",
+          br: "Destino",
         },
         /*128*/ {
           de: "Ressourcentransport",
@@ -16963,6 +17158,7 @@ class OGInfinity {
           es: "Transporte de recursos",
           fr: "Transport des ressources",
           tr: "Nakliye",
+          br: "Transporte de recursos",
         },
         /*129*/ {
           de: "Abriss",
@@ -16970,6 +17166,7 @@ class OGInfinity {
           es: "Demolición",
           fr: "Démolition",
           tr: "Yıkım",
+          br: "Demolição",
         },
         /*130*/ {
           de: "Filter",
@@ -16977,6 +17174,7 @@ class OGInfinity {
           es: "Filtro",
           fr: "Filtre",
           tr: "Filtre",
+          br: "Filtro",
         },
         /*131*/ {
           de: "Kapazität",
@@ -16984,6 +17182,7 @@ class OGInfinity {
           es: "Capacidad",
           fr: "Capacité",
           tr: "Kapasite",
+          br: "Capacidade",
         },
         /*132*/ {
           de: "Füllzeit",
@@ -16991,6 +17190,7 @@ class OGInfinity {
           es: "Tiempo de llenado",
           fr: "Temps de remplissage",
           tr: "Dolum süresi",
+          br: "Tempo de preenchimento",
         },
         /*133*/ {
           de: "Beitragen oder Bugs melden",
@@ -16998,6 +17198,7 @@ class OGInfinity {
           es: "Contribuir o reportar errores",
           fr: "Contribuer ou signaler un bug",
           tr: "Katkıda bulunun veya hata bildirin",
+          br: "Contribuir ou relatar um bug",
         },
         /*134*/ {
           de: "Flottenaktivität der Planeten anzeigen",
@@ -17005,6 +17206,7 @@ class OGInfinity {
           es: "Mostrar actividad de flota de los planetas",
           fr: "Afficher l'activité de la flotte des planètes",
           tr: "Gezegenlerin filo etkinliğini görüntüle",
+          br: "Mostrar atividade de frota dos planetas",
         },
         /*135*/ {
           de: "Filter invertieren",
@@ -17012,6 +17214,7 @@ class OGInfinity {
           es: "Invertir filtro",
           fr: "Inverser le filtre",
           tr: "Filtreyi ters çevir",
+          br: "Inverter filtro",
         },
         /*136*/ {
           de: "Forschungsgeschwindigkeit",
@@ -17019,6 +17222,7 @@ class OGInfinity {
           es: "Velocidad de investigación",
           fr: "Vitesse de recherche",
           tr: "Araştırma hızı",
+          br: "Velocidade de pesquisa"
         },
         /*137*/ {
           de: "Aktivität",
@@ -17026,6 +17230,7 @@ class OGInfinity {
           es: "Actividad",
           fr: "Activité",
           tr: "Etkinlik",
+          br: "Atividade",
         },
         /*138*/ {
           de: "Navigationspfeile in mobiler Version",
@@ -17033,6 +17238,7 @@ class OGInfinity {
           es: "Flechas de navegación en versión móvil",
           fr: "Flèches de navigation en version mobile",
           tr: "Mobil sürümde gezinme okları",
+          br: "Setas de navegação na versão mobile",
         },
         /*139*/ {
           de: "Entdeckungen",
@@ -17040,6 +17246,7 @@ class OGInfinity {
           es: "Descubrimientos",
           fr: "Découvertes",
           tr: "Keşifler",
+          br: "Descobertas",
         },
         /*140*/ {
           de: "Menschen",
@@ -17047,6 +17254,7 @@ class OGInfinity {
           es: "Humanos",
           fr: "Les humains",
           tr: "İnsanlar",
+          br: "Humanos",
         },
         /*141*/ {
           de: "Rock’tal",
@@ -17054,6 +17262,7 @@ class OGInfinity {
           es: "Rock`tal",
           fr: "Roctas",
           tr: "Rock’tal",
+          br: "Rock’tal",
         },
         /*142*/ {
           de: "Mechas",
@@ -17061,6 +17270,7 @@ class OGInfinity {
           es: "Mecas",
           fr: "Mécas",
           tr: "Mekalar",
+          br: "Mechas",
         },
         /*143*/ {
           de: "Kaelesh",
@@ -17068,6 +17278,7 @@ class OGInfinity {
           es: "Kaelesh",
           fr: "Kaeleshs",
           tr: "Kaelesh",
+          br: "Kaelesh",
         },
         /*144*/ {
           de: "Erfahrung",
@@ -17075,6 +17286,7 @@ class OGInfinity {
           es: "Experiencia",
           fr: "Expérience",
           tr: "Deneyim",
+          br: "Experiência",
         },
         /*145*/ {
           de: "Artefakte",
@@ -17082,6 +17294,7 @@ class OGInfinity {
           es: "Artefactos",
           fr: "Artéfacts",
           tr: "Artefaktlar",
+          br: "Artefatos",
         },
         /*146*/ {
           de: "Abgeschlossenen Vorgang anzeigen",
@@ -17089,6 +17302,7 @@ class OGInfinity {
           es: "Indicar proceso terminado",
           fr: "Indiquer les processus terminé",
           tr: "Tamamlanmış işlemi belirt",
+          br: "Indicar fim de processo",
         },
         /*147*/ {
           de: "Externe Tools",
@@ -17096,6 +17310,7 @@ class OGInfinity {
           es: "Herramientas externas",
           fr: "Outils externes",
           tr: "Diğer Araçlar",
+          br: "Ferramentas externas",
         },
         /*148*/ {
           de: "Standardmissionen",
@@ -17103,6 +17318,7 @@ class OGInfinity {
           es: "Misiónes por defecto",
           fr: "Missions par défaut",
           tr: "Tamamlanmış görevler",
+          br: "Missões padrão",
         },
         /*149*/ {
           de: "Expeditionsfrachtlimit (%)",
@@ -17110,6 +17326,7 @@ class OGInfinity {
           es: "Límite de carga de expedición (%)",
           fr: "Limite de fret d'expédition (%)",
           tr: "Sefer kargo limiti (%)",
+          br: "Limite de carga na expedição (%)",
         },
         /*150*/ {
           de: "Expeditionen vor der Rotation",
@@ -17117,6 +17334,7 @@ class OGInfinity {
           es: "Expediciones antes de rotación",
           fr: "Expéditions avant rotation",
           tr: "Rotasyon öncesi sefer gezileri",
+          br: "Número de expedições antes da rotação",
         },
         /*151*/ {
           de: "Fehler: kein PTRE teamkey registriert",
@@ -17124,6 +17342,7 @@ class OGInfinity {
           es: "Error: ninguna clave de equipo PTRE registrada",
           fr: "Erreur : aucune clé d'équipe PTRE enregistrée",
           tr: "Hata: hiçbir takım anahtarı PTRE kaydedilmedi",
+          br: "Erro: Sem chave de equipe do PTRE registrada",
         },
         /*152*/ {
           de: "Bester bericht",
@@ -17131,6 +17350,7 @@ class OGInfinity {
           es: "Mejor informe",
           fr: "Meilleur rapport",
           tr: "En i̇yi rapor",
+          br: "Melhor reporte",
         },
         /*153*/ {
           de: "Berichtsdetails",
@@ -17138,6 +17358,7 @@ class OGInfinity {
           es: "Detalles del informe",
           fr: "Détails du rapport",
           tr: "Rapor detayları",
+          br: "Detalhes do reporte",
         },
         /*154*/ {
           de: "Zielprofil",
@@ -17145,6 +17366,7 @@ class OGInfinity {
           es: "Perfil del objetivo",
           fr: "Profil de la cible",
           tr: "Hedef profili",
+          br: "Perfil do alvo",
         },
         /*155*/ {
           de: "- Keine aktivität erkannt",
@@ -17152,6 +17374,7 @@ class OGInfinity {
           es: "- Ninguna actividad detectada",
           fr: "- Aucune activité détectée",
           tr: "- Hiçbir etkinlik algılanmadı",
+          br: "- Sem atividade detectada",
         },
         /*156*/ {
           de: "- Einige aktivitäten erkannt",
@@ -17159,6 +17382,7 @@ class OGInfinity {
           es: "- Unas pocas actividades detectadas",
           fr: "- Peu d'activités détectées",
           tr: "- Birkaç etkinlik algılandı",
+          br: "- Pouca atividade detectada",
         },
         /*157*/ {
           de: "- Einige aktivitäten erkannt",
@@ -17166,6 +17390,7 @@ class OGInfinity {
           es: "- Algunas actividades detectadas",
           fr: "- Quelques activités détectées",
           tr: "- Bazı etkinlikler algılandı",
+          br: "- Algumas atividades detectadas",
         },
         /*158*/ {
           de: "- Viele Aktivitäten erkannt",
@@ -17173,6 +17398,7 @@ class OGInfinity {
           es: "- Muchas actividades detectadas",
           fr: "- Beaucoup d'activités détectées",
           tr: "- Çok sayıda etkinlik algılandı",
+          br: "- Muita atividade detectada",
         },
         /*159*/ {
           de: "<br>- Perfekt überprüft",
@@ -17180,6 +17406,7 @@ class OGInfinity {
           es: "<br>- Perfectamente verificado",
           fr: "<br>- Parfaitement vérifié",
           tr: "<br>- Mükemmel kontrol edildi",
+          br: "<br>- Verificado perfeitamente",
         },
         /*160*/ {
           de: "<br>- Gut überprüft",
@@ -17187,6 +17414,7 @@ class OGInfinity {
           es: "<br>- Bien verificado",
           fr: "<br>- Bien vérifié",
           tr: "<br>- Güzel kontrol edildi",
+          br: "<br>- Verificação boa",
         },
         /*161*/ {
           de: "<br>- Ordentlich überprüft",
@@ -17194,6 +17422,7 @@ class OGInfinity {
           es: "<br>- Aceptablemente verificado",
           fr: "<br>- Moyennement vérifié",
           tr: "<br>- Uygun bir şekilde kontrol edildi",
+          br: "<br>- Verificação decente",
         },
         /*162*/ {
           de: "Schlecht überprüft",
@@ -17201,6 +17430,7 @@ class OGInfinity {
           es: "Pobremente verificado",
           fr: "Mal vérifié",
           tr: "Kötü kontrol edildi",
+          br: "Verificação ruim",
         },
         /*163*/ {
           de: "Nicht überprüft",
@@ -17208,6 +17438,7 @@ class OGInfinity {
           es: "No verificado",
           fr: "Non vérifié",
           tr: "Kontrol edilmedi",
+          br: "Não verificado",
         },
         /*164*/ {
           de: "Fehlende Schiffe für die ausgewählte Flottenzusammensetzung...",
@@ -17215,6 +17446,7 @@ class OGInfinity {
           es: "No hay suficientes naves para la composición de flota escogida...",
           fr: "Vaisseaux manquants pour la composition de flotte choisie...",
           tr: "Seçilen filo bileşimi için eksik gemiler...",
+          br: "Sem naves suficientes para a composição de frota escolhida...",
         },
         /*165*/ {
           de: "Verwendung für Expeditionen",
@@ -17222,6 +17454,7 @@ class OGInfinity {
           es: "Usar para expediciones",
           fr: "Utiliser pour les expéditions",
           tr: "Sefer gezileri için kullanın",
+          br: "Usar para expedições",
         },
         /*166*/ {
           de: "Entdecken",
@@ -17229,6 +17462,7 @@ class OGInfinity {
           es: "Descubrir",
           fr: "Découvrir",
           tr: "Keşfetmek",
+          br: "Descobrir",
         },
         /*167*/ {
           de: "Entdeckungsdaten",
@@ -17236,6 +17470,7 @@ class OGInfinity {
           es: "Datos de descubrimientos",
           fr: "Données de découvertes",
           tr: "Keşifler Verileri",
+          br: "Dados de descobertas",
         },
         /*168*/ {
           de: "Daten werden geladen. Bitte warten...",
@@ -17243,6 +17478,7 @@ class OGInfinity {
           es: "Cargando datos. Por favor, espere...",
           fr: "Chargement des données. Veuillez patienter...",
           tr: "Veri yükleniyor. Lütfen bekleyin...",
+          br: "Carregando dados. Por favor, aguarde...",
         },
         /*169*/ {
           de: "Externes Tool nicht in 'Einstellung' konfiguriert",
@@ -17250,6 +17486,7 @@ class OGInfinity {
           es: "Herramienta externa sin configurar en 'Ajustes'",
           fr: "Outil externe non configuré dans 'Paramètres'",
           tr: "Harici takım 'Ayarlar' da yapılandırılmamış",
+          br: "Ferramenta externa não configurada nos 'Ajustes'",
         },
         /*170*/ {
           de: "Kampfsimulator",
@@ -17257,6 +17494,7 @@ class OGInfinity {
           es: "Simulador de batallas",
           fr: "Simulateur de combat",
           tr: "Savaş simülatörü",
+          br: "Simulador de batalhas",
         },
         /*171*/ {
           de: "Wähle eine Option...",
@@ -17264,6 +17502,7 @@ class OGInfinity {
           es: "Seleccionar opción...",
           fr: "Sélectionnez l'option...",
           tr: "Seçeneği seçin...",
+          br: "Selecione uma opção...",
         },
         /*172*/ {
           de: "MSE",
@@ -17285,6 +17524,7 @@ class OGInfinity {
           es: "",
           fr: "",
           tr: "",
+          br: "",
         },
       ],
     };
