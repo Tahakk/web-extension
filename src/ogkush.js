@@ -17510,6 +17510,7 @@ class OGInfinity {
           es: "UME",
           fr: "USM",
           tr: "MSB",
+          br: "SEM",
         },
         /*173*/ {
           de: "Summe als Standardmetalleinheit",
@@ -17517,6 +17518,7 @@ class OGInfinity {
           es: "Suma en unidades de metal equivalente",
           fr: "Somme en unité standard de métal",
           tr: "Metal standart birimi olarak toplam",
+          br: "Soma Equivalente em metal",
         },
         /*174*/ {
           de: "",
